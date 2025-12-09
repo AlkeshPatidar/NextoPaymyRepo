@@ -1,45 +1,40 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react'
+import {SafeAreaView, StatusBar} from 'react-native'
+import StackNavigation from './src/routes/StackNavigation/route'
+import color from './src/common/Colors/colors'
+import FlashMessage from 'react-native-flash-message'
+import Loader from './src/components/Loader'
+import {Provider, useSelector} from 'react-redux'
+import store from './src/redux/store'
+import {LoginCheckProvider} from './src/utils/Context'
+import ToastMessage from './src/components/Tooltips/SuccessToolTip'
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const MainApp = () => {
+  const loaderVisible = useSelector(state => state?.loader?.loader)
 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
+    <LoginCheckProvider>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+        <StatusBar
+          barStyle={'light-content'}
+          backgroundColor={color.App_Primary_color}
+          // translucent
+        />
+        <StackNavigation />
+        {/* <FlashMessage position='top' /> */}
+         <ToastMessage />
+        <Loader visible={loaderVisible} />
+      </SafeAreaView>
+    </LoginCheckProvider>
+  )
 }
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
+    <Provider store={store}>
+      <MainApp />
+    </Provider>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
+export default App
