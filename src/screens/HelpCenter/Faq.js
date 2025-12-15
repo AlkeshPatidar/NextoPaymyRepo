@@ -78,8 +78,8 @@ export const FAQsScreen = ({ navigation }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
-      paddingBottom: 16,
+      paddingTop: 30,
+      paddingBottom: 10,
       paddingHorizontal: 20,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },

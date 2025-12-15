@@ -10,12 +10,12 @@ import {
   Alert,
 } from 'react-native';
 import { FONTS_FAMILY } from '../../assets/Fonts';
-import { 
-  App_Primary_color, 
-  dark33, 
-  dark55, 
-  darkMode25, 
-  white 
+import {
+  App_Primary_color,
+  dark33,
+  dark55,
+  darkMode25,
+  white
 } from '../../common/Colors/colors';
 import { useSelector } from 'react-redux';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -44,8 +44,8 @@ const ProfileScreen = ({ navigation }) => {
       'Are you sure you want to logout?',
       [
         { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Logout', 
+        {
+          text: 'Logout',
           style: 'destructive',
           onPress: () => {
             // Add logout logic here
@@ -84,10 +84,10 @@ const ProfileScreen = ({ navigation }) => {
                   )}
                 </View>
               </View>
-              <Feather 
-                name="chevron-right" 
-                size={20} 
-                color={isDarkMode ? '#666' : '#999'} 
+              <Feather
+                name="chevron-right"
+                size={20}
+                color={isDarkMode ? '#666' : '#999'}
               />
             </TouchableOpacity>
             {index < items.length - 1 && (
@@ -100,14 +100,14 @@ const ProfileScreen = ({ navigation }) => {
   );
 
   const accountMenuItems = [
-    {
-      id: '1',
-      title: 'Edit Profile',
-      subtitle: 'Update your personal information',
-      icon: <Feather name="edit-2" size={20} color="#4CAF50" />,
-      iconBg: '#4CAF50',
-      onPress: () => navigation.navigate('EditProfile'),
-    },
+    // {
+    //   id: '1',
+    //   title: 'Edit Profile',
+    //   subtitle: 'Update your personal information',
+    //   icon: <Feather name="edit-2" size={20} color="#4CAF50" />,
+    //   iconBg: '#4CAF50',
+    //   onPress: () => navigation.navigate('EditProfile'),
+    // },
     {
       id: '2',
       title: 'Company Information',
@@ -116,14 +116,23 @@ const ProfileScreen = ({ navigation }) => {
       iconBg: '#2196F3',
       onPress: () => navigation.navigate('CompanyInfo'),
     },
+       {
+      id: '4',
+      title: 'Account Details',
+      subtitle: 'Balance Rs. 0',
+      icon: <AntDesign name="account-book" size={22} color="#FF9800" />,
+      iconBg: '#FF9800',
+      onPress: () => navigation.navigate('AccountDetailsScreen'),
+    },
     {
       id: '3',
-      title: 'Saved Addresses',
-      subtitle: 'Manage your pickup & delivery locations',
-      icon: <Ionicons name="location" size={22} color="#FF9800" />,
+      title: 'Search GST',
+      subtitle: 'Search your GST details',
+      icon: <Ionicons name="search" size={22} color="#FF9800" />,
       iconBg: '#FF9800',
-      onPress: () => navigation.navigate('SavedAddresses'),
+      onPress: () => navigation.navigate('WebViewScreen'),
     },
+
   ];
 
   const supportMenuItems = [
@@ -144,7 +153,7 @@ const ProfileScreen = ({ navigation }) => {
       onPress: () => {
         // Add call functionality
         // console.log('Calling support...');
-         navigation.navigate('CallSupportScreen')
+        navigation.navigate('CallSupportScreen')
       },
     },
     {
@@ -183,8 +192,8 @@ const ProfileScreen = ({ navigation }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
-      paddingBottom: 15,
+      paddingTop: 30,
+      paddingBottom: 10,
       paddingHorizontal: 20,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
@@ -246,19 +255,19 @@ const ProfileScreen = ({ navigation }) => {
       flex: 1,
     },
     profileName: {
-      fontSize: 16,
+      fontSize: 14,
       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
       color: isDarkMode ? white : '#000',
       // marginBottom: 4,
     },
     profileEmail: {
-      fontSize: 13,
+      fontSize: 12,
       fontFamily: FONTS_FAMILY.Poppins_Regular,
       color: isDarkMode ? '#999' : '#666',
       marginBottom: 2,
     },
     profilePhone: {
-      fontSize: 13,
+      fontSize: 12,
       fontFamily: FONTS_FAMILY.Poppins_Regular,
       color: isDarkMode ? '#999' : '#666',
     },
@@ -279,7 +288,7 @@ const ProfileScreen = ({ navigation }) => {
       shadowOpacity: 0.05,
       shadowRadius: 8,
       elevation: 3,
-      height:90
+      height: 90
     },
     statValue: {
       fontSize: 18,
@@ -297,7 +306,7 @@ const ProfileScreen = ({ navigation }) => {
       paddingBottom: 100,
     },
     menuSection: {
-      marginBottom: 24,
+      marginBottom: 15,
       paddingHorizontal: 20,
     },
     sectionTitle: {
@@ -320,7 +329,7 @@ const ProfileScreen = ({ navigation }) => {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: 16,
+      padding: 10,
     },
     menuItemLeft: {
       flexDirection: 'row',
@@ -328,8 +337,8 @@ const ProfileScreen = ({ navigation }) => {
       flex: 1,
     },
     iconContainer: {
-      width: 44,
-      height: 44,
+      width: 33,
+      height: 33,
       borderRadius: 22,
       justifyContent: 'center',
       alignItems: 'center',
@@ -339,7 +348,7 @@ const ProfileScreen = ({ navigation }) => {
       flex: 1,
     },
     menuTitle: {
-      fontSize: 14,
+      fontSize: 13,
       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
       // marginBottom: 2,
     },
@@ -355,8 +364,8 @@ const ProfileScreen = ({ navigation }) => {
       marginHorizontal: 10,
       // marginTop: 12,
       backgroundColor: isDarkMode ? dark33 : white,
-      borderRadius: 16,
-      padding: 16,
+      borderRadius: 10,
+      padding: 8,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
@@ -367,8 +376,8 @@ const ProfileScreen = ({ navigation }) => {
       elevation: 3,
     },
     logoutText: {
-      fontSize: 15,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+      fontSize: 14,
+      fontFamily: FONTS_FAMILY.Poppins_Medium,
       color: '#F44336',
       marginLeft: 8,
     },
@@ -384,24 +393,24 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar 
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'} 
-        backgroundColor={isDarkMode ? dark33 : white} 
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={isDarkMode ? dark33 : white}
       />
 
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerTop}>
           <Text style={styles.headerTitle}>Profile</Text>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.settingsButton}
             activeOpacity={0.7}
             onPress={() => navigation.navigate('Settings')}
           >
-            <Ionicons 
-              name="settings-outline" 
-              size={24} 
-              color={isDarkMode ? white : '#000'} 
+            <Ionicons
+              name="settings-outline"
+              size={24}
+              color={isDarkMode ? white : '#000'}
             />
           </TouchableOpacity>
         </View>
@@ -410,8 +419,8 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.profileCard}>
           <View style={styles.avatarContainer}>
             {userData.profileImage ? (
-              <Image 
-                source={{ uri: userData.profileImage }} 
+              <Image
+                source={{ uri: userData.profileImage }}
                 style={styles.avatarImage}
               />
             ) : (
@@ -429,7 +438,7 @@ const ProfileScreen = ({ navigation }) => {
       </View>
 
       {/* Stats */}
-      <View style={styles.statsContainer}>
+      {/* <View style={styles.statsContainer}>
         <View style={styles.statBox}>
           <Text style={styles.statValue}>{userData.totalBookings}</Text>
           <Text style={styles.statLabel}>Total Bookings</Text>
@@ -442,9 +451,11 @@ const ProfileScreen = ({ navigation }) => {
           <Text style={styles.statValue}>{userData.memberSince}</Text>
           <Text style={styles.statLabel}>Member Since</Text>
         </View>
-      </View>
+      </View> */}
 
-      <ScrollView 
+      <View style={{ height: 20 }} />
+
+      <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
@@ -456,9 +467,20 @@ const ProfileScreen = ({ navigation }) => {
 
         {/* Legal Section */}
         <MenuSection title="Legal" items={legalMenuItems} />
+        <View style={{
+          gap:10
+        }}>
+        <TouchableOpacity
+          style={styles.logoutButton}
+          activeOpacity={0.7}
+          onPress={handleLogout}
+        >
+          <MaterialCommunityIcons name="delete" size={22} color="#F44336" />
+          <Text style={styles.logoutText}>Delete my Account</Text>
+        </TouchableOpacity>
 
         {/* Logout Button */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.logoutButton}
           activeOpacity={0.7}
           onPress={handleLogout}
@@ -466,6 +488,8 @@ const ProfileScreen = ({ navigation }) => {
           <MaterialCommunityIcons name="logout" size={22} color="#F44336" />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
+
+        </View>
 
         {/* Version */}
         <Text style={styles.versionText}>Version 2.5.0</Text>

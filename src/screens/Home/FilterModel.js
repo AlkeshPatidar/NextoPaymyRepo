@@ -669,8 +669,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 50,
-    paddingBottom: 15,
+    paddingTop: 10,
+    // paddingBottom: 15,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
   },
@@ -686,12 +686,12 @@ const styles = StyleSheet.create({
   },
   tabsContainer: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     paddingTop: 10,
   },
   tab: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 4,
     borderBottomWidth: 2,
     alignItems: 'center',
     flexDirection: 'row',
@@ -703,11 +703,11 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 14,
-    fontFamily: FONTS_FAMILY.Poppins_Medium,
+    fontFamily: FONTS_FAMILY.Poppins_SemiBold,
   },
   tabBadge: {
     minWidth: 18,
-    height: 18,
+    height: 15,
     borderRadius: 9,
     justifyContent: 'center',
     alignItems: 'center',
@@ -726,7 +726,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   usersList: {
-    gap: 4,
+    gap: 0,
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -743,7 +743,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   checkboxLabel: {
-    fontSize: 14,
+    fontSize: 13,
     fontFamily: FONTS_FAMILY.Poppins_Regular,
     flex: 1,
   },

@@ -1109,7 +1109,7 @@ const FreightRateScreen = ({ navigation }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
+      paddingTop: 30,
       paddingBottom: 0,
       paddingHorizontal: 10,
       shadowColor: '#000',

@@ -1176,10 +1176,11 @@ import {
 import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import SuccessModal from './SuccessModel'
 
 const BookTruckScreen = ({ navigation }) => {
   const { isDarkMode } = useSelector(state => state.theme);
-
+ const [modalVisible, setModalVisible] = useState(false);
   // States
   const [fromCity, setFromCity] = useState('Mumbai');
   const [toCity, setToCity] = useState('Surat');
@@ -1255,6 +1256,7 @@ const BookTruckScreen = ({ navigation }) => {
       weight,
       truckType: selectedTruckType,
     });
+    setModalVisible(true)
     // Navigate to next screen or make API call
   };
 
@@ -1331,7 +1333,7 @@ const BookTruckScreen = ({ navigation }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
+      paddingTop: 30,
       paddingBottom: 16,
       paddingHorizontal: 10,
       flexDirection: 'row',
@@ -1481,7 +1483,7 @@ const BookTruckScreen = ({ navigation }) => {
     bookButton: {
       backgroundColor: App_Primary_color,
       paddingVertical: 10,
-      borderRadius: 12,
+      borderRadius: 20,
       alignItems: 'center',
       shadowColor: App_Primary_color,
       shadowOffset: { width: 0, height: 4 },
@@ -1489,10 +1491,14 @@ const BookTruckScreen = ({ navigation }) => {
       shadowRadius: 8,
       elevation: 8,
       marginTop: 8,
-      marginHorizontal:20
+      marginHorizontal:10,
+      position:'absolute',
+      bottom:40,
+      left:10,
+      right:10,
     },
     bookButtonText: {
-      fontSize: 16,
+      fontSize: 14,
       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
       color: white,
     },
@@ -1643,7 +1649,7 @@ const BookTruckScreen = ({ navigation }) => {
         </View>
 
         {/* Open Trucks */}
-        <View style={styles.card}>
+        {/* <View style={styles.card}>
           <View style={styles.sectionTitle}>
             <MaterialCommunityIcons
               name="truck-outline"
@@ -1672,10 +1678,10 @@ const BookTruckScreen = ({ navigation }) => {
               </TouchableOpacity>
             ))}
           </View>
-        </View>
+        </View> */}
 
         {/* Closed Trucks */}
-        <View style={styles.card}>
+        {/* <View style={styles.card}>
           <View style={styles.sectionTitle}>
             <MaterialCommunityIcons
               name="truck-cargo-container"
@@ -1704,9 +1710,10 @@ const BookTruckScreen = ({ navigation }) => {
               </TouchableOpacity>
             ))}
           </View>
-        </View>
+        </View> */}
 
         {/* Book Button */}
+      </ScrollView>
         <TouchableOpacity
           style={styles.bookButton}
           activeOpacity={0.8}
@@ -1714,7 +1721,6 @@ const BookTruckScreen = ({ navigation }) => {
         >
           <Text style={styles.bookButtonText}>Book</Text>
         </TouchableOpacity>
-      </ScrollView>
 
       {/* Modals */}
       <SelectionModal
@@ -1742,6 +1748,11 @@ const BookTruckScreen = ({ navigation }) => {
         selectedValue={toCity}
         onSelect={setToCity}
         title="Select To City"
+      />
+      
+      <SuccessModal
+        visible={modalVisible}
+        onClose={()=>navigation.replace('Tab')}
       />
     </View>
   );

@@ -14,7 +14,7 @@ import {
     white
 } from '../../common/Colors/colors';
 
-const PaymentDetailsModal = ({ visible, onClose, isDarkMode, paymentData }) => {
+const PaymentDetailsModal = ({navigation, visible, onClose, isDarkMode, paymentData }) => {
     // Default payment data
     const defaultData = {
         payable: '₹62600',
@@ -146,7 +146,7 @@ const PaymentDetailsModal = ({ visible, onClose, isDarkMode, paymentData }) => {
             justifyContent: 'center',
         },
         payButtonText: {
-            fontSize: 16,
+            fontSize: 14,
             fontFamily: FONTS_FAMILY.Poppins_SemiBold,
             color: white,
         },
@@ -248,7 +248,8 @@ const PaymentDetailsModal = ({ visible, onClose, isDarkMode, paymentData }) => {
                                 style={styles.payButton}
                                 onPress={() => {
                                     // Handle payment action
-                                    console.log('Pay button pressed');
+                                    // console.log('Pay button pressed');
+                                    navigation.navigate('PaymentScreen')
                                     onClose();
                                 }}
                             >

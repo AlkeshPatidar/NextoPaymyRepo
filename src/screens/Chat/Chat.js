@@ -274,9 +274,9 @@ const ChatScreen = ({ navigation, route }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
+      paddingTop: 30,
       paddingBottom: 10,
-      paddingHorizontal: 20,
+      paddingHorizontal: 10,
       flexDirection: 'row',
       alignItems: 'center',
       shadowColor: '#000',

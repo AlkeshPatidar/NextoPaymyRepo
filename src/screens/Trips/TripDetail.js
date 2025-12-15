@@ -504,7 +504,7 @@ const TripDetailScreen = ({ navigation, route }) => {
         },
         payButtonText: {
             color: white,
-            fontSize: 16,
+            fontSize: 14,
             fontFamily: FONTS_FAMILY.Poppins_SemiBold,
         },
     });
@@ -596,6 +596,7 @@ const TripDetailScreen = ({ navigation, route }) => {
                     activeOpacity={0.8}
                     onPress={() => {
                         // Handle payment
+                        navigation.navigate('PaymentScreen')
                     }}
                 >
                     <Text style={styles.payButtonText}>Pay ₹6260</Text>
@@ -611,7 +612,8 @@ const TripDetailScreen = ({ navigation, route }) => {
                 visible={isPaymentModalVisible}
                 onClose={() => setIsPaymentModalVisible(false)}
                 isDarkMode={isDarkMode}
-                paymentData={paymentData} // Optional: Pass custom data or omit for default
+                paymentData={paymentData} 
+                navigation={navigation}
             />
 
                 <DocumentsModal

@@ -212,8 +212,8 @@ const NotificationCenter = ({ navigation }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
-      paddingBottom: 16,
+      paddingTop: 30,
+      paddingBottom:10,
       paddingHorizontal: 20,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
@@ -257,16 +257,16 @@ const NotificationCenter = ({ navigation }) => {
       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
     },
     filterContainer: {
-      paddingVertical: 12,
+      paddingVertical: 0,
     },
     filterScrollContent: {
       paddingHorizontal: 20,
       gap: 8,
     },
     filterChip: {
-      paddingHorizontal: 16,
-      paddingVertical: 8,
-      borderRadius: 20,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      borderRadius: 10,
       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
       marginRight: 8,
     },
@@ -274,7 +274,7 @@ const NotificationCenter = ({ navigation }) => {
       backgroundColor: App_Primary_color,
     },
     filterText: {
-      fontSize: 13,
+      fontSize: 12,
       fontFamily: FONTS_FAMILY.Poppins_Medium,
       color: isDarkMode ? '#999' : '#666',
     },
@@ -282,13 +282,13 @@ const NotificationCenter = ({ navigation }) => {
       color: white,
     },
     contentContainer: {
-      paddingHorizontal: 20,
-      paddingTop: 16,
+      paddingHorizontal: 10,
+      paddingTop: 10,
       paddingBottom: 100,
     },
     notificationCard: {
       borderRadius: 16,
-      padding: 16,
+      padding: 10,
       marginBottom: 12,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
@@ -300,9 +300,9 @@ const NotificationCenter = ({ navigation }) => {
       flexDirection: 'row',
     },
     iconContainer: {
-      width: 44,
-      height: 44,
-      borderRadius: 22,
+      width: 33,
+      height: 33,
+      borderRadius: 12,
       justifyContent: 'center',
       alignItems: 'center',
       marginRight: 12,
@@ -316,8 +316,8 @@ const NotificationCenter = ({ navigation }) => {
       marginBottom: 4,
     },
     notificationTitle: {
-      fontSize: 15,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+      fontSize: 14,
+      fontFamily: FONTS_FAMILY.Poppins_Medium,
       flex: 1,
     },
     unreadDot: {
@@ -328,10 +328,10 @@ const NotificationCenter = ({ navigation }) => {
       marginLeft: 8,
     },
     notificationMessage: {
-      fontSize: 13,
+      fontSize: 12,
       fontFamily: FONTS_FAMILY.Poppins_Regular,
       lineHeight: 20,
-      marginBottom: 8,
+      marginBottom: 5,
     },
     notificationFooter: {
       flexDirection: 'row',

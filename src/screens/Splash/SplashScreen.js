@@ -26,14 +26,16 @@ const SplashScreen = ({ navigation }) => {
   const { loggedInby, setloggedInby } = useLoginCheck()
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
+  
 
   useEffect(() => {
     // loginCheck()
     // initializeTheme();
 
     setTimeout(() => {
-      navigation.navigate('Onboarding')
-    }, 3000)
+      // navigation.navigate('Onboarding')
+      navigation.navigate('LanguageSelection')
+    }, 2000)
 
   }, [])
 

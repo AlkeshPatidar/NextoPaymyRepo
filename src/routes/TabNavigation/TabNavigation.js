@@ -417,21 +417,40 @@ function TabNavigation() {
           tabBarIcon: ({ focused }) =>
             focused ? (
               <View
+              style={{
+                  alignItems: 'center',
+                  // gap: 8,
+                  top: 20,
+                   width: 45,
+                }}
+              >
+
+              <View
                 style={{
                   alignItems: 'center',
                   backgroundColor: App_Primary_color,
                   justifyContent: 'center',
-                  height: 45,
-                  width: 45,
+                  height: 42,
+                  width: 42,
                   borderRadius: 28,
-                  top: 20
                 }}>
                 <Icon
                   name="home"
                   size={25}
                   color={white}
                 />
+              
               </View>
+                  <CustomText
+                  style={{
+                    color: App_Primary_color,
+                    fontSize: 12,
+                    fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+                  }}>
+                  Home
+                </CustomText>
+              </View>
+
             ) : (
               <View
                 style={{
@@ -465,21 +484,38 @@ function TabNavigation() {
           tabBarLabel: () => <></>,
           tabBarIcon: ({ focused }) =>
             focused ? (
+                <View
+              style={{
+                  alignItems: 'center',
+                  // gap: 8,
+                  top: 20,
+                   width: 45,
+                }}
+              >
               <View
                 style={{
                   alignItems: 'center',
                   backgroundColor: App_Primary_color,
                   justifyContent: 'center',
-                  height: 45,
-                  width: 45,
+                  height: 42,
+                  width: 42,
                   borderRadius: 28,
-                  top: 20
+                  // top: 20
                 }}>
                 <Icon
                   name="car"
                   size={25}
                   color={white}
                 />
+              </View>
+               <CustomText
+                  style={{
+                    color: App_Primary_color,
+                    fontSize: 12,
+                    fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+                  }}>
+                  Trips
+                </CustomText>
               </View>
             ) : (
               <View
@@ -514,21 +550,38 @@ function TabNavigation() {
           tabBarLabel: () => <></>,
           tabBarIcon: ({ focused }) =>
             focused ? (
+                 <View
+              style={{
+                  alignItems: 'center',
+                  // gap: 8,
+                  top: 20,
+                   width: 45,
+                }}
+              >
               <View
                 style={{
                   alignItems: 'center',
                   backgroundColor: App_Primary_color,
                   justifyContent: 'center',
-                  height: 45,
-                  width: 45,
+                  height: 42,
+                  width: 42,
                   borderRadius: 28,
-                  top: 20,
+                  // top: 20,
                 }}>
                 <Icon
                   name="pricetag"
                   size={25}
                   color={white}
                 />
+              </View>
+                <CustomText
+                  style={{
+                    color: App_Primary_color,
+                    fontSize: 12,
+                    fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+                  }}>
+                  Rates
+                </CustomText>
               </View>
             ) : (
               <View
@@ -564,21 +617,38 @@ function TabNavigation() {
           tabBarLabel: () => <></>,
           tabBarIcon: ({ focused }) =>
             focused ? (
+                 <View
+              style={{
+                  alignItems: 'center',
+                  // gap: 8,
+                  top: 20,
+                   width: 45,
+                }}
+              >
               <View
                 style={{
                   alignItems: 'center',
                   backgroundColor: App_Primary_color,
                   justifyContent: 'center',
-                  height: 45,
-                  width: 45,
+                  height: 42,
+                  width: 42,
                   borderRadius: 28,
-                  top: 20,
+                  // top: 20,
                 }}>
                 <Icon
                   name="chatbubbles"
                   size={25}
                   color={white}
                 />
+              </View>
+               <CustomText
+                  style={{
+                    color: App_Primary_color,
+                    fontSize: 12,
+                    fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+                  }}>
+                  Chat
+                </CustomText>
               </View>
             ) : (
               <View
@@ -613,23 +683,41 @@ function TabNavigation() {
           tabBarLabel: () => <></>,
           tabBarIcon: ({ focused }) =>
             focused ? (
+                 <View
+              style={{
+                  alignItems: 'center',
+                  // gap: 8,
+                  top: 20,
+                   width: 45,
+                }}
+              >
               <View
                 style={{
                   alignItems: 'center',
                   backgroundColor: App_Primary_color,
                   justifyContent: 'center',
-                  height: 45,
-                  width: 45,
+                  height: 38,
+                  width: 38,
                   borderRadius: 28,
-                  top: 20,
+                  // top: 20,
                 }}>
                 <Icon
                   name="person"
-                  size={25}
+                  size={23}
                   color={white}
                 />
               </View>
+                <CustomText
+                  style={{
+                    color:App_Primary_color,
+                    fontSize: 12,
+                    fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+                  }}>
+                  Profile
+                </CustomText>
+              </View>
             ) : (
+              
               <View
                 style={{
                   alignItems: 'center',
@@ -639,7 +727,7 @@ function TabNavigation() {
                 }}>
                 <Icon
                   name="person-outline"
-                  size={25}
+                  size={23}
                   color={isDarkMode ? 'white' : '#6B7280'}
                 />
                 <CustomText

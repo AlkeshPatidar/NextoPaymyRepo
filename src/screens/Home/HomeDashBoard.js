@@ -533,7 +533,7 @@
 //           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 //         }
 //       >
-    
+
 
 //         {/* Recent Bookings Section */}
 //         <View style={styles.sectionContainer}>
@@ -741,19 +741,19 @@ const HomeScreen = ({ navigation }) => {
   const handleApplyFilter = ({ users, truckTypes }) => {
     setSelectedUsers(users);
     setSelectedTruckTypes(truckTypes);
-    
+
     let filtered = allBookings;
-    
+
     // Filter by users
     if (users.length > 0) {
       filtered = filtered.filter(item => users.includes(item.user));
     }
-    
+
     // Filter by truck types
     if (truckTypes.length > 0) {
       filtered = filtered.filter(item => truckTypes.includes(item.truckType));
     }
-    
+
     setRecentBookings(filtered);
   };
 
@@ -863,7 +863,7 @@ const HomeScreen = ({ navigation }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 40,
+      paddingTop: 35,
       paddingBottom: 5,
       paddingHorizontal: 20,
       borderBottomLeftRadius: 24,
@@ -888,7 +888,7 @@ const HomeScreen = ({ navigation }) => {
       fontSize: 18,
       fontFamily: FONTS_FAMILY.Poppins_Bold,
       color: isDarkMode ? white : '#000',
-      marginTop: 4,
+      bottom: 5,
     },
     notificationButton: {
       width: 44,
@@ -910,16 +910,19 @@ const HomeScreen = ({ navigation }) => {
     createBookingButton: {
       backgroundColor: App_Primary_color,
       borderRadius: 10,
-      paddingVertical: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
+      paddingVertical: 7,
+      // alignItems: 'center',
+      // justifyContent: 'center',
       shadowColor: App_Primary_color,
       shadowOffset: { width: 0, height: 4 },
       shadowOpacity: 0.3,
       shadowRadius: 8,
       elevation: 8,
       alignSelf: 'center',
-      paddingHorizontal: 8
+      paddingHorizontal: 20,
+      position: 'absolute',
+      bottom: 100,
+      right: 20
     },
     createBookingText: {
       color: white,
@@ -928,7 +931,8 @@ const HomeScreen = ({ navigation }) => {
       marginLeft: 8,
     },
     scrollContent: {
-      paddingBottom: 100,
+      paddingBottom: 130,
+      // marginTop: 10
     },
     statsContainer: {
       flexDirection: 'row',
@@ -965,14 +969,47 @@ const HomeScreen = ({ navigation }) => {
       textAlign: 'center',
     },
     sectionContainer: {
-      marginTop: 18,
+      marginTop: 10,
       paddingHorizontal: 10,
     },
+      filterButton: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 6,
+          paddingHorizontal: 10,
+          paddingVertical: 5,
+          borderRadius: 8,
+          backgroundColor: isDarkMode ? dark33 : white,
+          position: 'relative',
+        },
+        filterButtonText: {
+          fontSize: 13,
+          fontFamily: FONTS_FAMILY.Poppins_Medium,
+          color: isDarkMode ? white : '#000',
+        },
+        filterBadge: {
+          position: 'absolute',
+          top: -4,
+          right: -4,
+          backgroundColor: App_Primary_color,
+          width: 18,
+          height: 18,
+          borderRadius: 9,
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        filterBadgeText: {
+          color: white,
+          fontSize: 10,
+          fontFamily: FONTS_FAMILY.Poppins_Bold,
+        },
     sectionHeader: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginBottom: 7,
+      // marginBottom: 7,
+      paddingHorizontal: 10,
+      paddingTop: 25
     },
     sectionTitle: {
       fontSize: 14,
@@ -1112,17 +1149,7 @@ const HomeScreen = ({ navigation }) => {
           <Row style={{
             gap: 10
           }}>
-            <TouchableOpacity
-              style={styles.createBookingButton}
-              activeOpacity={0.8}
-              onPress={() => navigation.navigate('CreateBookingScreen')}
-            >
-              <CustomText style={{
-                color:'white',
-                fontFamily:FONTS_FAMILY.Poppins_Medium,
-                fontSize:14
-              }}>Book</CustomText>
-            </TouchableOpacity>
+
             <TouchableOpacity
               style={styles.notificationButton}
               activeOpacity={0.7}
@@ -1154,13 +1181,52 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('CompletedShipments')}
         />
         <StatCard
-          icon={<FontAwesome5 name="rupee-sign" size={20} color="#2196F3" />}
+          icon={<FontAwesome5 name="check-circle" size={20} color="#2196F3" />}
           iconBg="#2196F3"
           title="Booking"
           onPress={() => navigation.navigate('Payments')}
         />
       </View>
 
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Recent Bookings</Text>
+        <TouchableOpacity
+          style={styles.viewAllButton}
+          activeOpacity={0.7}
+          onPress={handleFilterClick}
+        >
+          {(selectedUsers.length > 0 || selectedTruckTypes.length > 0) ? (
+            <>
+              <Text style={styles.viewAllText}>Clear Filter</Text>
+              <Ionicons name="close-circle" size={18} color={App_Primary_color} />
+            </>
+          ) : (
+            <>
+              {/* <Ionicons name="filter" size={18} color={App_Primary_color} /> */}
+               <TouchableOpacity
+                          style={styles.filterButton}
+                          activeOpacity={0.7}
+                          onPress={() => handleFilterClick()}
+                        >
+                          <Ionicons
+                            name="options-outline"
+                            size={18}
+                            color={isDarkMode ? white : '#000'}
+                          />
+                          <Text style={styles.filterButtonText}>Filter</Text>
+                        
+                        </TouchableOpacity>
+              {getTotalFilterCount() > 0 && (
+                <View style={styles.filterBadge}>
+                  <Text style={styles.filterBadgeText}>
+                    {getTotalFilterCount()}
+                  </Text>
+                </View>
+              )}
+            </>
+          )}
+        </TouchableOpacity>
+      </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
@@ -1170,32 +1236,7 @@ const HomeScreen = ({ navigation }) => {
       >
         {/* Recent Bookings Section */}
         <View style={styles.sectionContainer}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Recent Bookings</Text>
-            <TouchableOpacity
-              style={styles.viewAllButton}
-              activeOpacity={0.7}
-              onPress={handleFilterClick}
-            >
-              {(selectedUsers.length > 0 || selectedTruckTypes.length > 0) ? (
-                <>
-                  <Text style={styles.viewAllText}>Clear Filter</Text>
-                  <Ionicons name="close-circle" size={18} color={App_Primary_color} />
-                </>
-              ) : (
-                <>
-                  <Ionicons name="filter" size={18} color={App_Primary_color} />
-                  {getTotalFilterCount() > 0 && (
-                    <View style={styles.filterBadge}>
-                      <Text style={styles.filterBadgeText}>
-                        {getTotalFilterCount()}
-                      </Text>
-                    </View>
-                  )}
-                </>
-              )}
-            </TouchableOpacity>
-          </View>
+
 
           {recentBookings.length > 0 ? (
             recentBookings.map((item) => (
@@ -1209,8 +1250,8 @@ const HomeScreen = ({ navigation }) => {
                 color={isDarkMode ? '#666' : '#CCC'}
               />
               <Text style={styles.emptyText}>
-                {getTotalFilterCount() > 0 
-                  ? 'No bookings found with selected filters' 
+                {getTotalFilterCount() > 0
+                  ? 'No bookings found with selected filters'
                   : 'No bookings yet'}
               </Text>
             </View>
@@ -1229,6 +1270,19 @@ const HomeScreen = ({ navigation }) => {
         onApplyFilter={handleApplyFilter}
         onReset={handleResetFilter}
       />
+      <TouchableOpacity
+        style={styles.createBookingButton}
+        activeOpacity={0.8}
+        // onPress={() => navigation.navigate('CreateBookingScreen')}
+        onPress={() => navigation.navigate('TruckListingScreen')}
+
+      >
+        <CustomText style={{
+          color: 'white',
+          fontFamily: FONTS_FAMILY.Poppins_Medium,
+          fontSize: 16
+        }}>Book</CustomText>
+      </TouchableOpacity>
     </View>
   );
 };

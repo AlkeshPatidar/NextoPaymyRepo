@@ -189,17 +189,17 @@ const Signup = ({ navigation }) => {
     const addressErr = validateAddress(address);
 
     // Set errors
-    if (nameErr) setNameError(nameErr);
-    if (companyNameErr) setCompanyNameError(companyNameErr);
-    if (companyTypeErr) setCompanyTypeError(companyTypeErr);
+    // if (nameErr) setNameError(nameErr);
+    // if (companyNameErr) setCompanyNameError(companyNameErr);
+    // if (companyTypeErr) setCompanyTypeError(companyTypeErr);
     if (gstErr) setGstError(gstErr);
-    if (addressErr) setAddressError(addressErr);
+    // if (addressErr) setAddressError(addressErr);
 
     // If any error exists, stop submission
-    if (nameErr || companyNameErr || companyTypeErr || gstErr || addressErr) {
-      ToastMsg('Please fix all errors before submitting');
-      return;
-    }
+    // if (nameErr || companyNameErr || companyTypeErr || gstErr || addressErr) {
+    //   ToastMsg('Please fix all errors before submitting');
+    //   return;
+    // }
 
     // All validations passed
     ToastMsg('Profile saved successfully!');
@@ -363,7 +363,7 @@ const Signup = ({ navigation }) => {
             ]}
           >
             {/* Name Field */}
-            <CustomInputField
+            {/* <CustomInputField
               label={'Name'}
               placeholder={'Enter your full name'}
               onChangeText={(text) => {
@@ -374,10 +374,10 @@ const Signup = ({ navigation }) => {
             />
             {nameError ? (
               <Text style={styles.errorText}>{nameError}</Text>
-            ) : null}
+            ) : null} */}
 
             {/* Company Name Field */}
-            <CustomInputField
+            {/* <CustomInputField
               label={'Company Name'}
               placeholder={'Enter company name'}
               onChangeText={(text) => {
@@ -388,10 +388,10 @@ const Signup = ({ navigation }) => {
             />
             {companyNameError ? (
               <Text style={styles.errorText}>{companyNameError}</Text>
-            ) : null}
+            ) : null} */}
 
             {/* Company Type Field - You can implement dropdown here */}
-            <CustomInputField
+            {/* <CustomInputField
               label={'Company Type'}
               placeholder={'Select company type'}
               onChangeText={(text) => {
@@ -402,28 +402,28 @@ const Signup = ({ navigation }) => {
             />
             {companyTypeError ? (
               <Text style={styles.errorText}>{companyTypeError}</Text>
-            ) : null}
-            <Text style={styles.optionalLabel}>
+            ) : null} */}
+            {/* <Text style={styles.optionalLabel}>
               e.g., Transporter, Fleet Owner, Logistics Provider
-            </Text>
+            </Text> */}
 
             {/* GST Field (Optional) */}
             <CustomInputField
-              label={'GST Number (Optional)'}
+              label={'GST Number'}
               placeholder={'Enter GST number'}
-              onChangeText={(text) => {
-                setGst(text.toUpperCase());
-                if (gstError) setGstError('');
-              }}
-              value={gst}
-              maxLength={15}
+              // onChangeText={(text) => {
+              //   setGst(text.toUpperCase());
+              //   if (gstError) setGstError('');
+              // }}
+              // value={gst}
+              // maxLength={15}
             />
             {gstError ? (
               <Text style={styles.errorText}>{gstError}</Text>
             ) : null}
 
             {/* Address Field */}
-            <CustomInputField
+            {/* <CustomInputField
               label={'Address'}
               placeholder={'Enter complete business address'}
               onChangeText={(text) => {
@@ -436,7 +436,7 @@ const Signup = ({ navigation }) => {
             />
             {addressError ? (
               <Text style={styles.errorText}>{addressError}</Text>
-            ) : null}
+            ) : null} */}
           </Animated.View>
         </Animated.View>
         <View style={{height: 100}}/> 
@@ -459,7 +459,7 @@ const Signup = ({ navigation }) => {
           onPress={onSubmit}
           activeOpacity={0.8}
         >
-          <Text style={styles.signupButtonText}>Save Profile</Text>
+          <Text style={styles.signupButtonText}>Submit</Text>
         </TouchableOpacity>
         
    

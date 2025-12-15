@@ -124,7 +124,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
+      paddingTop: 30,
       paddingBottom: 16,
       paddingHorizontal: 20,
       shadowColor: '#000',

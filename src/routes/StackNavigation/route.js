@@ -12,8 +12,10 @@ import SplashScreen from '../../screens/Splash/SplashScreen';
 import LocationPermissionScreen from '../../screens/Auth/LocationPermission';
 
 import Signup from '../../screens/Auth/Signup';
+import LanguageSelection from '../../screens/Auth/LanguageSelection';
 import HomeScreen from '../../screens/Home/HomeDashBoard'
 import BookingDetailScreen from '../../screens/Home/BookingDetail'
+import TruckListingScreen from '../../screens/Booking/TruckListingScreen'
 
 import CreateBookingScreen from '../../screens/Booking/CreateBooking'
 import NotificationCenter from '../../screens/Notification/Notification'
@@ -25,6 +27,13 @@ import TermsAndConditionsScreen from '../../screens/HelpCenter/Terms&condition'
 import PrivacyPolicyScreen from '../../screens/HelpCenter/PrivacyPolicy'
 import TripDetailScreen from '../../screens/Trips/TripDetail'
 import TrackingScreen from '../../screens/Trips/TripTrackingScreen'
+import PaymentScreen from '../../screens/Trips/PaymentScreen'
+
+import WebViewScreen from '../../screens/Profile/WebView'
+import AccountDetailsScreen from '../../screens/Profile/AccountDetail'
+
+
+
 
 
 
@@ -45,9 +54,12 @@ const StackNavigation = () => {
           cardStyle: { backgroundColor: '#000' },
           animation: 'slide_from_right'
         }}
-        initialRouteName="Tab">
+        initialRouteName="SplashScreen">
           
         <Stack.Screen name={'SplashScreen'} component={SplashScreen} />
+        <Stack.Screen name={'LanguageSelection'} component={LanguageSelection} />
+
+        
         <Stack.Screen name={'Onboarding'} component={Splash1} />
         <Stack.Screen name={'Login'} component={Login} />
         <Stack.Screen name={'Signup'} component={Signup} />
@@ -66,6 +78,16 @@ const StackNavigation = () => {
         <Stack.Screen name={'BookingDetailScreen'} component={BookingDetailScreen} />
         <Stack.Screen name={'TripDetailScreen'} component={TripDetailScreen} />
         <Stack.Screen name={'TrackingScreen'} component={TrackingScreen} />
+        <Stack.Screen name={'PaymentScreen'} component={PaymentScreen} />
+
+        <Stack.Screen name={'TruckListingScreen'} component={TruckListingScreen} />
+
+        <Stack.Screen name={'WebViewScreen'} component={WebViewScreen} />
+        <Stack.Screen name={'AccountDetailsScreen'} component={AccountDetailsScreen} />
+
+
+
+
 
 
 

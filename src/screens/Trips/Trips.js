@@ -2169,9 +2169,9 @@ const TripScreen = ({ navigation }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
-      paddingBottom: 16,
-      paddingHorizontal: 20,
+      paddingTop: 30,
+      paddingBottom: 10,
+      paddingHorizontal: 10,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.1,
@@ -2400,8 +2400,8 @@ const TripScreen = ({ navigation }) => {
       gap: 6,
     },
     blinkingDot: {
-      width: 8,
-      height: 8,
+      width: 9,
+      height: 9,
       borderRadius: 4,
     },
     lastUpdateText: {

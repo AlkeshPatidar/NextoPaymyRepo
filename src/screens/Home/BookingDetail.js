@@ -105,8 +105,8 @@ const BookingDetailScreen = ({ navigation, route }) => {
     },
     header: {
       backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 50,
-      paddingBottom: 16,
+      paddingTop: 30,
+      paddingBottom: 10,
       paddingHorizontal: 10,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
