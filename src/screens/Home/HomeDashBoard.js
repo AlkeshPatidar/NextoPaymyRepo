@@ -610,6 +610,7 @@ import {
   ScrollView,
   FlatList,
   RefreshControl,
+  Image,
 } from 'react-native';
 import { FONTS_FAMILY } from '../../assets/Fonts';
 import {
@@ -624,6 +625,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Row from '../../components/wrapper/row';
 import FilterModal from './FilterModel';
 import CustomText from '../../components/TextComponent';
@@ -942,7 +944,7 @@ const HomeScreen = ({ navigation }) => {
     },
     statCard: {
       flex: 1,
-      padding: 5,
+      padding: 4,
       borderRadius: 16,
       alignItems: 'center',
       shadowColor: '#000',
@@ -952,8 +954,8 @@ const HomeScreen = ({ navigation }) => {
       elevation: 3,
     },
     iconContainer: {
-      width: 48,
-      height: 48,
+      width: 40,
+      height: 40,
       borderRadius: 24,
       justifyContent: 'center',
       alignItems: 'center',
@@ -1142,10 +1144,16 @@ const HomeScreen = ({ navigation }) => {
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerTop}>
-          <View>
+          {/* <View>
             <Text style={styles.greeting}>Hello,</Text>
             <Text style={styles.userName}>Rahul Kumar</Text>
-          </View>
+          </View> */}
+          {/* Entypo */}
+          <Entypo
+          name='wallet'
+          size={25}
+          color={App_Primary_color}
+          />
           <Row style={{
             gap: 10
           }}>
@@ -1181,12 +1189,16 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('CompletedShipments')}
         />
         <StatCard
-          icon={<FontAwesome5 name="check-circle" size={20} color="#2196F3" />}
+          icon={<FontAwesome5 name="rupee-sign" size={20} color="#2196F3" />}
           iconBg="#2196F3"
-          title="Booking"
-          onPress={() => navigation.navigate('Payments')}
+          title="Rates"
+          onPress={() => navigation.navigate('RatesScreen')}
         />
       </View>
+
+      <Image source={{uri:'https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}}
+      style={{width:'100%',height:120,alignSelf:'center',marginTop:10,}}
+      />
 
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>Recent Bookings</Text>
@@ -1270,7 +1282,7 @@ const HomeScreen = ({ navigation }) => {
         onApplyFilter={handleApplyFilter}
         onReset={handleResetFilter}
       />
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.createBookingButton}
         activeOpacity={0.8}
         // onPress={() => navigation.navigate('CreateBookingScreen')}
@@ -1282,7 +1294,7 @@ const HomeScreen = ({ navigation }) => {
           fontFamily: FONTS_FAMILY.Poppins_Medium,
           fontSize: 16
         }}>Book</CustomText>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

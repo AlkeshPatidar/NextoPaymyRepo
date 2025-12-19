@@ -243,8 +243,8 @@ const BookingDetailScreen = ({ navigation, route }) => {
     },
     bookButton: {
       backgroundColor: App_Primary_color,
-      borderRadius: 12,
-      paddingVertical: 10,
+         borderRadius: 20,
+      paddingVertical: 8,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',

@@ -140,7 +140,7 @@ const PaymentDetailsModal = ({navigation, visible, onClose, isDarkMode, paymentD
         },
         payButton: {
             backgroundColor: App_Primary_color,
-            borderRadius: 12,
+            borderRadius: 20,
             paddingVertical: 10,
             alignItems: 'center',
             justifyContent: 'center',

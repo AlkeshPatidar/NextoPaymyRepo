@@ -325,60 +325,129 @@ import CustomButton from '../../components/Button'
 const { width, height } = Dimensions.get('window')
 
 // Onboarding data with both English and Hindi
+// const onboardingContent = {
+//   en: [
+//     {
+//       id: '1',
+//       title: 'Find Loads',
+//       highlight: 'Instantly',
+//       description: 'Connect with verified shippers and find the best loads for your truck across India in real-time.',
+//       image: 'https://static.vecteezy.com/system/resources/thumbnails/027/843/401/small/a-cargo-truck-with-a-container-is-seen-driving-across-a-bridge-while-a-semi-truck-with-a-cargo-trailer-follows-closely-behind-photo.jpg',
+//       backgroundColor: 'white',
+//     },
+//     {
+//       id: '2',
+//       title: 'Best Rates',
+//       highlight: 'Guaranteed',
+//       description: 'Get competitive freight rates with transparent pricing. No hidden charges, maximize your earnings on every trip.',
+//       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCtVkXSEyPOxRbCyd8w_hdn5ZTjmlnFHIIeA&s',
+//       backgroundColor: 'white',
+//     },
+//     {
+//       id: '3',
+//       title: 'Fast Payments',
+//       highlight: 'Assured',
+//       description: 'Complete your trips and get paid quickly. Track your earnings and manage payments seamlessly in one place.',
+//       image: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=800&q=80',
+//       backgroundColor: 'white',
+//     },
+//   ],
+//   hi: [
+//     {
+//       id: '1',
+//       title: 'लोड खोजें',
+//       highlight: 'तुरंत',
+//       description: 'सत्यापित शिपर्स से जुड़ें और पूरे भारत में अपने ट्रक के लिए सर्वोत्तम लोड रियल-टाइम में खोजें।',
+//       image: 'https://static.vecteezy.com/system/resources/thumbnails/027/843/401/small/a-cargo-truck-with-a-container-is-seen-driving-across-a-bridge-while-a-semi-truck-with-a-cargo-trailer-follows-closely-behind-photo.jpg',
+//       backgroundColor: 'white',
+//     },
+//     {
+//       id: '2',
+//       title: 'सर्वोत्तम दरें',
+//       highlight: 'गारंटीशुदा',
+//       description: 'पारदर्शी मूल्य निर्धारण के साथ प्रतिस्पर्धी माल ढुलाई दरें प्राप्त करें। कोई छिपा शुल्क नहीं, हर यात्रा पर अपनी कमाई को अधिकतम करें।',
+//       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCtVkXSEyPOxRbCyd8w_hdn5ZTjmlnFHIIeA&s',
+//       backgroundColor: 'white',
+//     },
+//     {
+//       id: '3',
+//       title: 'तेज़ भुगतान',
+//       highlight: 'सुनिश्चित',
+//       description: 'अपनी यात्राएं पूरी करें और जल्दी भुगतान प्राप्त करें। अपनी कमाई को ट्रैक करें और एक ही जगह पर भुगतान को सहजता से प्रबंधित करें।',
+//       image: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=800&q=80',
+//       backgroundColor: 'white',
+//     },
+//   ],
+// };
+
 const onboardingContent = {
   en: [
     {
       id: '1',
       title: 'Find Loads',
       highlight: 'Instantly',
-      description: 'Connect with verified shippers and find the best loads for your truck across India in real-time.',
-      image: 'https://static.vecteezy.com/system/resources/thumbnails/027/843/401/small/a-cargo-truck-with-a-container-is-seen-driving-across-a-bridge-while-a-semi-truck-with-a-cargo-trailer-follows-closely-behind-photo.jpg',
+      description:
+        'Connect with verified shippers and find the best loads for your truck across India in real-time.',
+      image:
+        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=900&q=80',
       backgroundColor: 'white',
     },
     {
       id: '2',
       title: 'Best Rates',
       highlight: 'Guaranteed',
-      description: 'Get competitive freight rates with transparent pricing. No hidden charges, maximize your earnings on every trip.',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCtVkXSEyPOxRbCyd8w_hdn5ZTjmlnFHIIeA&s',
+      description:
+        'Get competitive freight rates with transparent pricing. No hidden charges, maximize your earnings on every trip.',
+      image:
+        'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80',
       backgroundColor: 'white',
     },
     {
       id: '3',
       title: 'Fast Payments',
       highlight: 'Assured',
-      description: 'Complete your trips and get paid quickly. Track your earnings and manage payments seamlessly in one place.',
-      image: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=800&q=80',
+      description:
+        'Complete your trips and get paid quickly. Track your earnings and manage payments seamlessly in one place.',
+      image:
+        'https://static.vecteezy.com/system/resources/thumbnails/027/843/401/small/a-cargo-truck-with-a-container-is-seen-driving-across-a-bridge-while-a-semi-truck-with-a-cargo-trailer-follows-closely-behind-photo.jpg',
       backgroundColor: 'white',
     },
   ],
+
   hi: [
     {
       id: '1',
       title: 'लोड खोजें',
       highlight: 'तुरंत',
-      description: 'सत्यापित शिपर्स से जुड़ें और पूरे भारत में अपने ट्रक के लिए सर्वोत्तम लोड रियल-टाइम में खोजें।',
-      image: 'https://static.vecteezy.com/system/resources/thumbnails/027/843/401/small/a-cargo-truck-with-a-container-is-seen-driving-across-a-bridge-while-a-semi-truck-with-a-cargo-trailer-follows-closely-behind-photo.jpg',
+      description:
+        'सत्यापित शिपर्स से जुड़ें और पूरे भारत में अपने ट्रक के लिए सर्वोत्तम लोड रियल-टाइम में खोजें।',
+      image:
+        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=900&q=80',
       backgroundColor: 'white',
     },
     {
       id: '2',
       title: 'सर्वोत्तम दरें',
       highlight: 'गारंटीशुदा',
-      description: 'पारदर्शी मूल्य निर्धारण के साथ प्रतिस्पर्धी माल ढुलाई दरें प्राप्त करें। कोई छिपा शुल्क नहीं, हर यात्रा पर अपनी कमाई को अधिकतम करें।',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCtVkXSEyPOxRbCyd8w_hdn5ZTjmlnFHIIeA&s',
+      description:
+        'पारदर्शी मूल्य निर्धारण के साथ प्रतिस्पर्धी माल ढुलाई दरें प्राप्त करें। कोई छिपा शुल्क नहीं, हर यात्रा पर अपनी कमाई को अधिकतम करें।',
+      image:
+        'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80',
       backgroundColor: 'white',
     },
     {
       id: '3',
       title: 'तेज़ भुगतान',
       highlight: 'सुनिश्चित',
-      description: 'अपनी यात्राएं पूरी करें और जल्दी भुगतान प्राप्त करें। अपनी कमाई को ट्रैक करें और एक ही जगह पर भुगतान को सहजता से प्रबंधित करें।',
-      image: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=800&q=80',
+      description:
+        'अपनी यात्राएं पूरी करें और जल्दी भुगतान प्राप्त करें। अपनी कमाई को ट्रैक करें और एक ही जगह पर भुगतान को सहजता से प्रबंधित करें।',
+      image:
+        'https://static.vecteezy.com/system/resources/thumbnails/027/843/401/small/a-cargo-truck-with-a-container-is-seen-driving-across-a-bridge-while-a-semi-truck-with-a-cargo-trailer-follows-closely-behind-photo.jpg',
       backgroundColor: 'white',
     },
   ],
 };
+
 
 // Button texts
 const buttonTexts = {
@@ -543,8 +612,8 @@ const OnboardingScreen = ({ navigation }) => {
       height: height * 0.44,
       justifyContent: 'center',
       alignItems: 'center',
-      borderBottomLeftRadius: 40,
-      borderBottomRightRadius: 40,
+      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 20,
       overflow: 'hidden',
     },
     illustration: {

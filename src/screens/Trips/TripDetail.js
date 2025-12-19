@@ -492,7 +492,7 @@ const TripDetailScreen = ({ navigation, route }) => {
         },
         payButton: {
             backgroundColor: App_Primary_color,
-            borderRadius: 12,
+            borderRadius: 20,
             paddingVertical: 10,
             alignItems: 'center',
             justifyContent: 'center',

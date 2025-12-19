@@ -214,7 +214,7 @@ const LanguageSelection = ({ navigation }) => {
                 activeOpacity={0.7}
               >
                 <View style={styles.languageContent}>
-                  <Text style={styles.flag}>{language.flag}</Text>
+                  {/* <Text style={styles.flag}>{language.flag}</Text> */}
                   <View style={styles.languageTextContainer}>
                     <Text style={[
                       styles.languageName,
@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#F2F2F3',
     borderRadius: 16,
-    padding: 16,
+    padding: 10,
     borderWidth: 1,
     borderColor: '#E0E0E0',
   },
