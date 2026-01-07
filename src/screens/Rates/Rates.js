@@ -1661,6 +1661,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import SpaceBetweenRow from '../../components/wrapper/spacebetween';
 import Row from '../../components/wrapper/row';
+import TruckListingModal from '../Booking/TruckListingModel';
 
 const { width } = Dimensions.get('window');
 
@@ -1673,6 +1674,8 @@ const RatesScreen = ({ navigation }) => {
   const [selectedTruckFilter, setSelectedTruckFilter] = useState('All');
   const [showFromModal, setShowFromModal] = useState(false);
   const [showToModal, setShowToModal] = useState(false);
+
+    const [isModalVisible, setIsModalVisible] = useState(false)
 
   const cities = [
     'Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Pune', 'Ahmedabad',
@@ -1851,6 +1854,7 @@ const RatesScreen = ({ navigation }) => {
         { backgroundColor: isDarkMode ? dark33 : white }
       ]}
       activeOpacity={0.7}
+      onPress={()=>setIsModalVisible(true)}
     >
       <View style={styles.cardHeader}>
         <View style={styles.routeContainer}>
@@ -2535,6 +2539,11 @@ const RatesScreen = ({ navigation }) => {
         selectedValue={toCity}
         onSelect={setToCity}
         title="Select To City"
+      />
+       <TruckListingModal
+        visible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+        navigation={navigation}
       />
     </View>
   );

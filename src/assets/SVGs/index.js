@@ -10,6 +10,9 @@ import EditIcon from './EditIcon.svg'
 import BackBlackBg from './BackBlackBg.svg'
 import SearchWIthBg from './SearchWIthBg.svg'
 import Filter from './Filter.svg'
+import BgEff from './bgEff.svg'
+
+
 
 
 
@@ -21,6 +24,7 @@ import Filter from './Filter.svg'
 
 
 export {
+  BgEff,
   CartOnboarding,
   BackIcon,
   LocationBanner,

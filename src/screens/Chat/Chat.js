@@ -555,7 +555,7 @@ const ChatScreen = ({ navigation, route }) => {
           <Ionicons name="send" size={20} color={white} />
         </TouchableOpacity>
       </View>
-      <View style={{height:30}}/>
+      <View style={{height:50}}/>
       </ScrollView>
 
    

@@ -1153,7 +1153,614 @@
 // export default CreateBookingScreen;
 
 
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+// import {
+//   View,
+//   Text,
+//   TouchableOpacity,
+//   StyleSheet,
+//   StatusBar,
+//   ScrollView,
+//   TextInput,
+//   Modal,
+//   Pressable,
+// } from 'react-native';
+// import { FONTS_FAMILY } from '../../assets/Fonts';
+// import {
+//   App_Primary_color,
+//   dark33,
+//   dark55,
+//   darkMode25,
+//   white
+// } from '../../common/Colors/colors';
+// import { useSelector } from 'react-redux';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// import SuccessModal from './SuccessModel'
+
+// const BookTruckScreen = ({ navigation }) => {
+//   const { isDarkMode } = useSelector(state => state.theme);
+//  const [modalVisible, setModalVisible] = useState(false);
+//   // States
+//   const [fromCity, setFromCity] = useState('Mumbai');
+//   const [toCity, setToCity] = useState('Surat');
+//   const [materialType, setMaterialType] = useState('Furniture');
+//   const [weight, setWeight] = useState('18');
+//   const [selectedTruckType, setSelectedTruckType] = useState('32 Feet Multi Axle');
+  
+//   // Modal states
+//   const [showMaterialModal, setShowMaterialModal] = useState(false);
+//   const [showFromCityModal, setShowFromCityModal] = useState(false);
+//   const [showToCityModal, setShowToCityModal] = useState(false);
+
+//   // Data
+//   const materialTypes = [
+//     'Furniture',
+//     'Electronics',
+//     'Textiles',
+//     'Construction Material',
+//     'Food Items',
+//     'Machinery',
+//     'Chemicals',
+//     'Agricultural Products',
+//     'Medical Supplies',
+//     'General Goods',
+//   ];
+
+//   const cities = [
+//     'Mumbai',
+//     'Surat',
+//     'Delhi',
+//     'Pune',
+//     'Bangalore',
+//     'Ahmedabad',
+//     'Kolkata',
+//     'Chennai',
+//     'Hyderabad',
+//     'Jaipur',
+//     'Lucknow',
+//     'Indore',
+//     'Nagpur',
+//     'Vadodara',
+//     'Rajkot',
+//   ];
+
+//   const openTrucks = [
+//     '17 Feet Open',
+//     '20 Feet Open',
+//     '22 Feet Open',
+//     '24 Feet Open',
+//     '10 Whl Open',
+//     '12 Whl Open',
+//     '14 Whl Open',
+//     '16 Whl Open',
+//     '18 Whl Open',
+//   ];
+
+//   const closedTrucks = [
+//     '32 Feet Single Axle',
+//     '32 Feet Single Axle High Cube',
+//     '32 Feet Multi Axle',
+//     '32 Feet Multi Axle High Cube',
+//     '32 Feet Triple Axle',
+//     '20 Feet Closed',
+//     '22 Feet Closed',
+//     '24 Feet Closed',
+//   ];
+
+//   const handleBook = () => {
+//     console.log({
+//       from: fromCity,
+//       to: toCity,
+//       materialType,
+//       weight,
+//       truckType: selectedTruckType,
+//     });
+//     setModalVisible(true)
+//     // Navigate to next screen or make API call
+//   };
+
+//   // Reusable Modal Component
+//   const SelectionModal = ({ visible, onClose, data, selectedValue, onSelect, title }) => (
+//     <Modal
+//       transparent
+//       visible={visible}
+//       animationType="fade"
+//       onRequestClose={onClose}
+//     >
+//       <Pressable style={styles.modalOverlay} onPress={onClose}>
+//         <View
+//           style={[
+//             styles.modalContainer,
+//             { backgroundColor: isDarkMode ? dark33 : white }
+//           ]}
+//           onStartShouldSetResponder={() => true}
+//         >
+//           <View style={[
+//             styles.modalHeader,
+//             { borderBottomColor: isDarkMode ? dark55 : '#F0F0F0' }
+//           ]}>
+//             <Text style={[
+//               styles.modalTitle,
+//               { color: isDarkMode ? white : '#000' }
+//             ]}>
+//               {title}
+//             </Text>
+//             <TouchableOpacity onPress={onClose} style={styles.modalCloseButton}>
+//               <Ionicons name="close" size={24} color={isDarkMode ? white : '#000'} />
+//             </TouchableOpacity>
+//           </View>
+
+//           <ScrollView style={styles.modalContent} showsVerticalScrollIndicator={false}>
+//             {data.map((item, index) => (
+//               <TouchableOpacity
+//                 key={index}
+//                 style={[
+//                   styles.modalItem,
+//                   selectedValue === item && {
+//                     backgroundColor: App_Primary_color + '15',
+//                     borderColor: App_Primary_color,
+//                   }
+//                 ]}
+//                 activeOpacity={0.7}
+//                 onPress={() => {
+//                   onSelect(item);
+//                   onClose();
+//                 }}
+//               >
+//                 <Text style={[
+//                   styles.modalItemText,
+//                   { color: isDarkMode ? white : '#000' },
+//                   selectedValue === item && { color: App_Primary_color, fontFamily: FONTS_FAMILY.Poppins_SemiBold }
+//                 ]}>
+//                   {item}
+//                 </Text>
+//                 {selectedValue === item && (
+//                   <Ionicons name="checkmark-circle" size={20} color={App_Primary_color} />
+//                 )}
+//               </TouchableOpacity>
+//             ))}
+//           </ScrollView>
+//         </View>
+//       </Pressable>
+//     </Modal>
+//   );
+
+//   const styles = StyleSheet.create({
+//     container: {
+//       flex: 1,
+//       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
+//     },
+//     header: {
+//       backgroundColor: isDarkMode ? dark33 : white,
+//       paddingTop: 30,
+//       paddingBottom: 16,
+//       paddingHorizontal: 10,
+//       flexDirection: 'row',
+//       alignItems: 'center',
+//       shadowColor: '#000',
+//       shadowOffset: { width: 0, height: 2 },
+//       shadowOpacity: 0.1,
+//       shadowRadius: 8,
+//       elevation: 5,
+//     },
+//     backButton: {
+//       width: 40,
+//       height: 40,
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//       marginRight: 12,
+//     },
+//     headerTitle: {
+//       fontSize: 20,
+//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+//       color: isDarkMode ? white : '#000',
+//     },
+//     scrollContent: {
+//       padding: 10,
+//     },
+//     card: {
+//       backgroundColor: isDarkMode ? dark33 : white,
+//       borderRadius: 16,
+//       padding: 10,
+//       marginBottom: 16,
+//       shadowColor: '#000',
+//       shadowOffset: { width: 0, height: 2 },
+//       shadowOpacity: 0.05,
+//       shadowRadius: 8,
+//       elevation: 3,
+//     },
+//     locationRow: {
+//       flexDirection: 'row',
+//       gap: 16,
+//     },
+//     locationCard: {
+//       flex: 1,
+//     },
+//     locationLabel: {
+//       fontSize: 12,
+//       fontFamily: FONTS_FAMILY.Poppins_Regular,
+//       color: isDarkMode ? '#999' : '#666',
+//       marginBottom: 3,
+//     },
+//     locationButton: {
+//       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
+//       paddingHorizontal: 14,
+//       paddingVertical: 12,
+//       borderRadius: 10,
+//       borderWidth: 1,
+//       borderColor: isDarkMode ? dark55 : '#E0E0E0',
+//     },
+//     locationText: {
+//       fontSize: 13,
+//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+//       color: isDarkMode ? white : '#000',
+//     },
+//     detailsRow: {
+//       flexDirection: 'row',
+//       gap: 10,
+//       marginTop: 10,
+//     },
+//     detailCard: {
+//       flex: 1,
+//     },
+//     detailLabel: {
+//       fontSize: 12,
+//       fontFamily: FONTS_FAMILY.Poppins_Regular,
+//       color: isDarkMode ? '#999' : '#666',
+//       marginBottom: 0,
+//     },
+//     materialButton: {
+//       flexDirection: 'row',
+//       alignItems: 'center',
+//       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
+//       paddingHorizontal: 12,
+//       paddingVertical: 10,
+//       borderRadius: 10,
+//       borderWidth: 1,
+//       borderColor: isDarkMode ? dark55 : '#E0E0E0',
+//       gap: 8,
+//     },
+//     materialButtonText: {
+//       flex: 1,
+//       fontSize: 13,
+//       fontFamily: FONTS_FAMILY.Poppins_Medium,
+//       color: isDarkMode ? white : '#000',
+//     },
+//     weightContainer: {
+//       flexDirection: 'row',
+//       alignItems: 'center',
+//       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
+//       paddingHorizontal: 12,
+//       borderRadius: 10,
+//       borderWidth: 1,
+//       borderColor: isDarkMode ? dark55 : '#E0E0E0',
+//     },
+//     weightInput: {
+//       flex: 1,
+//       fontSize: 13,
+//       fontFamily: FONTS_FAMILY.Poppins_Medium,
+//       color: isDarkMode ? white : '#000',
+//       paddingVertical: 10,
+//     },
+//     sectionTitle: {
+//       flexDirection: 'row',
+//       alignItems: 'center',
+//       marginBottom: 12,
+//       gap: 8,
+//     },
+//     sectionTitleText: {
+//       fontSize: 14,
+//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+//       color: isDarkMode ? white : '#000',
+//     },
+//     truckGrid: {
+//       flexDirection: 'row',
+//       flexWrap: 'wrap',
+//       gap: 10,
+//     },
+//     truckButton: {
+//       paddingHorizontal: 13,
+//       paddingVertical: 6,
+//       borderRadius: 20,
+//       borderWidth: 1,
+//       borderColor: isDarkMode ? dark55 : '#DDD',
+//       backgroundColor: isDarkMode ? darkMode25 : white,
+//     },
+//     truckButtonSelected: {
+//       backgroundColor: App_Primary_color,
+//       borderColor: App_Primary_color,
+//     },
+//     truckButtonText: {
+//       fontSize: 12,
+//       fontFamily: FONTS_FAMILY.Poppins_Medium,
+//       color: isDarkMode ? white : '#000',
+//     },
+//     truckButtonTextSelected: {
+//       color: white,
+//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+//     },
+//     bookButton: {
+//       backgroundColor: App_Primary_color,
+//       paddingVertical: 10,
+//       borderRadius: 20,
+//       alignItems: 'center',
+//       shadowColor: App_Primary_color,
+//       shadowOffset: { width: 0, height: 4 },
+//       shadowOpacity: 0.3,
+//       shadowRadius: 8,
+//       elevation: 8,
+//       marginTop: 8,
+//       marginHorizontal:10,
+//       position:'absolute',
+//       bottom:40,
+//       left:10,
+//       right:10,
+//     },
+//     bookButtonText: {
+//       fontSize: 14,
+//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+//       color: white,
+//     },
+//     // Modal Styles
+//     modalOverlay: {
+//       flex: 1,
+//       backgroundColor: 'rgba(0, 0, 0, 0.5)',
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//       padding: 20,
+//     },
+//     modalContainer: {
+//       width: '100%',
+//       maxHeight: '80%',
+//       borderRadius: 16,
+//       shadowColor: '#000',
+//       shadowOffset: { width: 0, height: 4 },
+//       shadowOpacity: 0.25,
+//       shadowRadius: 12,
+//       elevation: 10,
+//     },
+//     modalHeader: {
+//       flexDirection: 'row',
+//       justifyContent: 'space-between',
+//       alignItems: 'center',
+//       paddingHorizontal: 20,
+//       paddingVertical: 16,
+//       borderBottomWidth: 1,
+//     },
+//     modalTitle: {
+//       fontSize: 18,
+//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+//     },
+//     modalCloseButton: {
+//       width: 40,
+//       height: 40,
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//     },
+//     modalContent: {
+//       maxHeight: 400,
+//       paddingHorizontal: 16,
+//       paddingVertical: 8,
+//     },
+//     modalItem: {
+//       flexDirection: 'row',
+//       justifyContent: 'space-between',
+//       alignItems: 'center',
+//       paddingVertical: 14,
+//       paddingHorizontal: 16,
+//       borderRadius: 10,
+//       marginVertical: 4,
+//       borderWidth: 1,
+//       borderColor: 'transparent',
+//     },
+//     modalItemText: {
+//       fontSize: 15,
+//       fontFamily: FONTS_FAMILY.Poppins_Regular,
+//     },
+//   });
+
+//   return (
+//     <View style={styles.container}>
+//       <StatusBar
+//         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+//         backgroundColor={isDarkMode ? dark33 : white}
+//       />
+
+//       {/* Header */}
+//       <View style={styles.header}>
+//         <TouchableOpacity
+//           style={styles.backButton}
+//           activeOpacity={0.7}
+//           onPress={() => navigation.goBack()}
+//         >
+//           <Ionicons name="arrow-back" size={24} color={isDarkMode ? white : '#000'} />
+//         </TouchableOpacity>
+//         <Text style={styles.headerTitle}>Book truck</Text>
+//       </View>
+
+//       <ScrollView
+//         showsVerticalScrollIndicator={false}
+//         contentContainerStyle={styles.scrollContent}
+//       >
+//         {/* From/To Card */}
+//         <View style={styles.card}>
+//           <View style={styles.locationRow}>
+//             <View style={styles.locationCard}>
+//               <Text style={styles.locationLabel}>From</Text>
+//               <TouchableOpacity
+//                 style={styles.locationButton}
+//                 activeOpacity={0.7}
+//                 onPress={() => setShowFromCityModal(true)}
+//               >
+//                 <Text style={styles.locationText}>{fromCity}</Text>
+//               </TouchableOpacity>
+//             </View>
+
+//             <View style={styles.locationCard}>
+//               <Text style={styles.locationLabel}>To</Text>
+//               <TouchableOpacity
+//                 style={styles.locationButton}
+//                 activeOpacity={0.7}
+//                 onPress={() => setShowToCityModal(true)}
+//               >
+//                 <Text style={styles.locationText}>{toCity}</Text>
+//               </TouchableOpacity>
+//             </View>
+//           </View>
+
+//           {/* Material Type and Weight */}
+//           <View style={styles.detailsRow}>
+//             <View style={styles.detailCard}>
+//               <Text style={styles.detailLabel}>Material type</Text>
+//               <TouchableOpacity
+//                 style={styles.materialButton}
+//                 activeOpacity={0.7}
+//                 onPress={() => setShowMaterialModal(true)}
+//               >
+//                 <MaterialCommunityIcons
+//                   name="package-variant"
+//                   size={20}
+//                   color={isDarkMode ? '#999' : '#666'}
+//                 />
+//                 <Text style={styles.materialButtonText}>{materialType}</Text>
+//                 <Ionicons
+//                   name="chevron-down"
+//                   size={18}
+//                   color={isDarkMode ? '#999' : '#666'}
+//                 />
+//               </TouchableOpacity>
+//             </View>
+
+//             <View style={styles.detailCard}>
+//               <Text style={styles.detailLabel}>Ton(MT)</Text>
+//               <View style={styles.weightContainer}>
+//                 <TextInput
+//                   style={styles.weightInput}
+//                   value={weight}
+//                   onChangeText={setWeight}
+//                   keyboardType="numeric"
+//                   placeholder="18"
+//                   placeholderTextColor={isDarkMode ? '#666' : '#999'}
+//                 />
+//               </View>
+//             </View>
+//           </View>
+//         </View>
+
+//         {/* Open Trucks */}
+//         {/* <View style={styles.card}>
+//           <View style={styles.sectionTitle}>
+//             <MaterialCommunityIcons
+//               name="truck-outline"
+//               size={20}
+//               color={isDarkMode ? white : '#000'}
+//             />
+//             <Text style={styles.sectionTitleText}>Open</Text>
+//           </View>
+//           <View style={styles.truckGrid}>
+//             {openTrucks.map((truck, index) => (
+//               <TouchableOpacity
+//                 key={index}
+//                 style={[
+//                   styles.truckButton,
+//                   selectedTruckType === truck && styles.truckButtonSelected
+//                 ]}
+//                 activeOpacity={0.7}
+//                 onPress={() => setSelectedTruckType(truck)}
+//               >
+//                 <Text style={[
+//                   styles.truckButtonText,
+//                   selectedTruckType === truck && styles.truckButtonTextSelected
+//                 ]}>
+//                   {truck}
+//                 </Text>
+//               </TouchableOpacity>
+//             ))}
+//           </View>
+//         </View> */}
+
+//         {/* Closed Trucks */}
+//         {/* <View style={styles.card}>
+//           <View style={styles.sectionTitle}>
+//             <MaterialCommunityIcons
+//               name="truck-cargo-container"
+//               size={20}
+//               color={isDarkMode ? white : '#000'}
+//             />
+//             <Text style={styles.sectionTitleText}>Closed</Text>
+//           </View>
+//           <View style={styles.truckGrid}>
+//             {closedTrucks.map((truck, index) => (
+//               <TouchableOpacity
+//                 key={index}
+//                 style={[
+//                   styles.truckButton,
+//                   selectedTruckType === truck && styles.truckButtonSelected
+//                 ]}
+//                 activeOpacity={0.7}
+//                 onPress={() => setSelectedTruckType(truck)}
+//               >
+//                 <Text style={[
+//                   styles.truckButtonText,
+//                   selectedTruckType === truck && styles.truckButtonTextSelected
+//                 ]}>
+//                   {truck}
+//                 </Text>
+//               </TouchableOpacity>
+//             ))}
+//           </View>
+//         </View> */}
+
+//         {/* Book Button */}
+//       </ScrollView>
+//         <TouchableOpacity
+//           style={styles.bookButton}
+//           activeOpacity={0.8}
+//           onPress={handleBook}
+//         >
+//           <Text style={styles.bookButtonText}>Book</Text>
+//         </TouchableOpacity>
+
+//       {/* Modals */}
+//       <SelectionModal
+//         visible={showMaterialModal}
+//         onClose={() => setShowMaterialModal(false)}
+//         data={materialTypes}
+//         selectedValue={materialType}
+//         onSelect={setMaterialType}
+//         title="Select Material Type"
+//       />
+
+//       <SelectionModal
+//         visible={showFromCityModal}
+//         onClose={() => setShowFromCityModal(false)}
+//         data={cities}
+//         selectedValue={fromCity}
+//         onSelect={setFromCity}
+//         title="Select From City"
+//       />
+
+//       <SelectionModal
+//         visible={showToCityModal}
+//         onClose={() => setShowToCityModal(false)}
+//         data={cities}
+//         selectedValue={toCity}
+//         onSelect={setToCity}
+//         title="Select To City"
+//       />
+      
+//       <SuccessModal
+//         visible={modalVisible}
+//         onClose={()=>navigation.replace('Tab')}
+//       />
+//     </View>
+//   );
+// };
+
+// export default BookTruckScreen;
+
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -1162,8 +1769,9 @@ import {
   StatusBar,
   ScrollView,
   TextInput,
-  Modal,
   Pressable,
+  Dimensions,
+  Modal,
 } from 'react-native';
 import { FONTS_FAMILY } from '../../assets/Fonts';
 import {
@@ -1176,180 +1784,174 @@ import {
 import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import SuccessModal from './SuccessModel'
+import SuccessModal from './SuccessModel';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+  runOnJS,
+  interpolate,
+  Extrapolate,
+} from 'react-native-reanimated';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
+
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+const BOTTOM_SHEET_HEIGHT = SCREEN_HEIGHT * 0.7;
 
 const BookTruckScreen = ({ navigation }) => {
   const { isDarkMode } = useSelector(state => state.theme);
- const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  
   // States
   const [fromCity, setFromCity] = useState('Mumbai');
   const [toCity, setToCity] = useState('Surat');
   const [materialType, setMaterialType] = useState('Furniture');
   const [weight, setWeight] = useState('18');
-  const [selectedTruckType, setSelectedTruckType] = useState('32 Feet Multi Axle');
   
-  // Modal states
-  const [showMaterialModal, setShowMaterialModal] = useState(false);
-  const [showFromCityModal, setShowFromCityModal] = useState(false);
-  const [showToCityModal, setShowToCityModal] = useState(false);
+  // Modal states for inner modals
+  const [showCityModal, setShowCityModal] = useState(false);
+  const [modalType, setModalType] = useState('');
+  const [cityModalData, setCityModalData] = useState([]);
+
+  // Reanimated values for MAIN SCREEN
+  const translateY = useSharedValue(SCREEN_HEIGHT);
 
   // Data
   const materialTypes = [
-    'Furniture',
-    'Electronics',
-    'Textiles',
-    'Construction Material',
-    'Food Items',
-    'Machinery',
-    'Chemicals',
-    'Agricultural Products',
-    'Medical Supplies',
-    'General Goods',
+    'Furniture', 'Electronics', 'Textiles', 'Construction Material',
+    'Food Items', 'Machinery', 'Chemicals', 'Agricultural Products',
+    'Medical Supplies', 'General Goods',
   ];
 
   const cities = [
-    'Mumbai',
-    'Surat',
-    'Delhi',
-    'Pune',
-    'Bangalore',
-    'Ahmedabad',
-    'Kolkata',
-    'Chennai',
-    'Hyderabad',
-    'Jaipur',
-    'Lucknow',
-    'Indore',
-    'Nagpur',
-    'Vadodara',
-    'Rajkot',
+    'Mumbai', 'Surat', 'Delhi', 'Pune', 'Bangalore', 'Ahmedabad',
+    'Kolkata', 'Chennai', 'Hyderabad', 'Jaipur', 'Lucknow',
+    'Indore', 'Nagpur', 'Vadodara', 'Rajkot',
   ];
 
-  const openTrucks = [
-    '17 Feet Open',
-    '20 Feet Open',
-    '22 Feet Open',
-    '24 Feet Open',
-    '10 Whl Open',
-    '12 Whl Open',
-    '14 Whl Open',
-    '16 Whl Open',
-    '18 Whl Open',
-  ];
-
-  const closedTrucks = [
-    '32 Feet Single Axle',
-    '32 Feet Single Axle High Cube',
-    '32 Feet Multi Axle',
-    '32 Feet Multi Axle High Cube',
-    '32 Feet Triple Axle',
-    '20 Feet Closed',
-    '22 Feet Closed',
-    '24 Feet Closed',
-  ];
-
-  const handleBook = () => {
-    console.log({
-      from: fromCity,
-      to: toCity,
-      materialType,
-      weight,
-      truckType: selectedTruckType,
+  // Open main screen animation
+  useEffect(() => {
+    translateY.value = withSpring(SCREEN_HEIGHT - BOTTOM_SHEET_HEIGHT, {
+      damping: 50,
+      stiffness: 400,
     });
-    setModalVisible(true)
-    // Navigate to next screen or make API call
+  }, []);
+
+  const handleClose = () => {
+    translateY.value = withTiming(SCREEN_HEIGHT, { duration: 300 });
+    setTimeout(() => {
+      navigation.goBack();
+    }, 300);
   };
 
-  // Reusable Modal Component
-  const SelectionModal = ({ visible, onClose, data, selectedValue, onSelect, title }) => (
-    <Modal
-      transparent
-      visible={visible}
-      animationType="fade"
-      onRequestClose={onClose}
-    >
-      <Pressable style={styles.modalOverlay} onPress={onClose}>
-        <View
-          style={[
-            styles.modalContainer,
-            { backgroundColor: isDarkMode ? dark33 : white }
-          ]}
-          onStartShouldSetResponder={() => true}
-        >
-          <View style={[
-            styles.modalHeader,
-            { borderBottomColor: isDarkMode ? dark55 : '#F0F0F0' }
-          ]}>
-            <Text style={[
-              styles.modalTitle,
-              { color: isDarkMode ? white : '#000' }
-            ]}>
-              {title}
-            </Text>
-            <TouchableOpacity onPress={onClose} style={styles.modalCloseButton}>
-              <Ionicons name="close" size={24} color={isDarkMode ? white : '#000'} />
-            </TouchableOpacity>
-          </View>
+  const openCityModal = (type, data) => {
+    setModalType(type);
+    setCityModalData(data);
+    setShowCityModal(true);
+  };
 
-          <ScrollView style={styles.modalContent} showsVerticalScrollIndicator={false}>
-            {data.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[
-                  styles.modalItem,
-                  selectedValue === item && {
-                    backgroundColor: App_Primary_color + '15',
-                    borderColor: App_Primary_color,
-                  }
-                ]}
-                activeOpacity={0.7}
-                onPress={() => {
-                  onSelect(item);
-                  onClose();
-                }}
-              >
-                <Text style={[
-                  styles.modalItemText,
-                  { color: isDarkMode ? white : '#000' },
-                  selectedValue === item && { color: App_Primary_color, fontFamily: FONTS_FAMILY.Poppins_SemiBold }
-                ]}>
-                  {item}
-                </Text>
-                {selectedValue === item && (
-                  <Ionicons name="checkmark-circle" size={20} color={App_Primary_color} />
-                )}
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-      </Pressable>
-    </Modal>
-  );
+  const handleSelectCity = (value) => {
+    if (modalType === 'fromCity') setFromCity(value);
+    else if (modalType === 'toCity') setToCity(value);
+    else if (modalType === 'material') setMaterialType(value);
+    setShowCityModal(false);
+  };
+
+  // Gesture for MAIN SCREEN
+  const gesture = Gesture.Pan()
+    .onStart(() => {
+      'worklet';
+    })
+    .onUpdate((event) => {
+      'worklet';
+      const newY = SCREEN_HEIGHT - BOTTOM_SHEET_HEIGHT + event.translationY;
+      if (newY >= SCREEN_HEIGHT - BOTTOM_SHEET_HEIGHT && newY <= SCREEN_HEIGHT) {
+        translateY.value = newY;
+      }
+    })
+    .onEnd((event) => {
+      'worklet';
+      if (event.velocityY > 500) {
+        translateY.value = withTiming(SCREEN_HEIGHT, { duration: 300 });
+        runOnJS(handleClose)();
+      } else {
+        if (translateY.value > SCREEN_HEIGHT - BOTTOM_SHEET_HEIGHT / 2) {
+          translateY.value = withTiming(SCREEN_HEIGHT, { duration: 300 });
+          runOnJS(handleClose)();
+        } else {
+          translateY.value = withSpring(SCREEN_HEIGHT - BOTTOM_SHEET_HEIGHT, {
+            damping: 50,
+            stiffness: 400,
+          });
+        }
+      }
+    });
+
+  const mainScreenStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+  }));
+
+  const backdropStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      translateY.value,
+      [SCREEN_HEIGHT - BOTTOM_SHEET_HEIGHT, SCREEN_HEIGHT],
+      [0.3, 0],
+      Extrapolate.CLAMP
+    );
+    return { opacity ,
+       backgroundColor: 'rgba(0, 0, 0, 5)'
+    };
+  });
+
+  const handleBook = () => {
+    setModalVisible(true);
+  };
 
   const styles = StyleSheet.create({
-    container: {
+    rootContainer: {
       flex: 1,
+    },
+    backdrop: {
+      ...StyleSheet.absoluteFillObject,
+      // backgroundColor: 'rgba(0, 0, 0, 1)',
+    },
+    mainContainer: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      height: SCREEN_HEIGHT,
       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
+      borderTopLeftRadius: 24,
+      borderTopRightRadius: 24,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: -4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 15,
+      elevation: 20,
+    },
+    dragHandleArea: {
+      paddingVertical: 10,
+      alignItems: 'center',
+    },
+    dragHandle: {
+      width: 40,
+      height: 5,
+      backgroundColor: isDarkMode ? '#666' : '#DDD',
+      borderRadius: 3,
     },
     header: {
-      backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 30,
-      paddingBottom: 16,
-      paddingHorizontal: 10,
       flexDirection: 'row',
+      justifyContent: 'space-between',
       alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 8,
-      elevation: 5,
+      paddingHorizontal: 16,
+      paddingVertical: 12,
     },
     backButton: {
       width: 40,
       height: 40,
       justifyContent: 'center',
       alignItems: 'center',
-      marginRight: 12,
     },
     headerTitle: {
       fontSize: 20,
@@ -1358,6 +1960,7 @@ const BookTruckScreen = ({ navigation }) => {
     },
     scrollContent: {
       padding: 10,
+      paddingBottom: 100,
     },
     card: {
       backgroundColor: isDarkMode ? dark33 : white,
@@ -1443,318 +2046,187 @@ const BookTruckScreen = ({ navigation }) => {
       color: isDarkMode ? white : '#000',
       paddingVertical: 10,
     },
-    sectionTitle: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 12,
-      gap: 8,
-    },
-    sectionTitleText: {
-      fontSize: 14,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-      color: isDarkMode ? white : '#000',
-    },
-    truckGrid: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 10,
-    },
-    truckButton: {
-      paddingHorizontal: 13,
-      paddingVertical: 6,
-      borderRadius: 20,
-      borderWidth: 1,
-      borderColor: isDarkMode ? dark55 : '#DDD',
-      backgroundColor: isDarkMode ? darkMode25 : white,
-    },
-    truckButtonSelected: {
-      backgroundColor: App_Primary_color,
-      borderColor: App_Primary_color,
-    },
-    truckButtonText: {
-      fontSize: 12,
-      fontFamily: FONTS_FAMILY.Poppins_Medium,
-      color: isDarkMode ? white : '#000',
-    },
-    truckButtonTextSelected: {
-      color: white,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-    },
     bookButton: {
       backgroundColor: App_Primary_color,
       paddingVertical: 10,
       borderRadius: 20,
       alignItems: 'center',
-      shadowColor: App_Primary_color,
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.3,
-      shadowRadius: 8,
-      elevation: 8,
-      marginTop: 8,
-      marginHorizontal:10,
-      position:'absolute',
-      bottom:40,
-      left:10,
-      right:10,
+      marginHorizontal: 10,
+      marginBottom: 20,
+      top:190
+      // position:'absolute',
+      // width:'100%',
+      // bottom:0
     },
     bookButtonText: {
       fontSize: 14,
       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
       color: white,
     },
-    // Modal Styles
+    // Inner Modal Styles
     modalOverlay: {
       flex: 1,
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
+      justifyContent: 'flex-end',
     },
-    modalContainer: {
-      width: '100%',
-      maxHeight: '80%',
-      borderRadius: 16,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.25,
-      shadowRadius: 12,
-      elevation: 10,
+    innerModal: {
+      backgroundColor: isDarkMode ? dark33 : white,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      maxHeight: SCREEN_HEIGHT * 0.6,
+      paddingBottom: 20,
     },
     modalHeader: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      paddingHorizontal: 20,
-      paddingVertical: 16,
+      padding: 16,
       borderBottomWidth: 1,
+      borderBottomColor: isDarkMode ? dark55 : '#f0f0f0',
     },
     modalTitle: {
       fontSize: 18,
       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-    },
-    modalCloseButton: {
-      width: 40,
-      height: 40,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    modalContent: {
-      maxHeight: 400,
-      paddingHorizontal: 16,
-      paddingVertical: 8,
+      color: isDarkMode ? white : '#000',
     },
     modalItem: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
       paddingVertical: 14,
       paddingHorizontal: 16,
-      borderRadius: 10,
-      marginVertical: 4,
-      borderWidth: 1,
-      borderColor: 'transparent',
+      borderBottomWidth: 1,
+      borderBottomColor: isDarkMode ? dark55 : '#f5f5f5',
     },
     modalItemText: {
       fontSize: 15,
       fontFamily: FONTS_FAMILY.Poppins_Regular,
+      color: isDarkMode ? white : '#000',
     },
   });
 
   return (
-    <View style={styles.container}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={isDarkMode ? dark33 : white}
-      />
+    <GestureHandlerRootView style={styles.rootContainer}>
+      <StatusBar backgroundColor="transparent" barStyle='light-content' translucent />
+      
+      {/* Backdrop */}
+      {/* <Animated.View style={[styles.backdrop, backdropStyle]} /> */}
 
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          activeOpacity={0.7}
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons name="arrow-back" size={24} color={isDarkMode ? white : '#000'} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Book truck</Text>
-      </View>
-
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
-      >
-        {/* From/To Card */}
-        <View style={styles.card}>
-          <View style={styles.locationRow}>
-            <View style={styles.locationCard}>
-              <Text style={styles.locationLabel}>From</Text>
-              <TouchableOpacity
-                style={styles.locationButton}
-                activeOpacity={0.7}
-                onPress={() => setShowFromCityModal(true)}
-              >
-                <Text style={styles.locationText}>{fromCity}</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.locationCard}>
-              <Text style={styles.locationLabel}>To</Text>
-              <TouchableOpacity
-                style={styles.locationButton}
-                activeOpacity={0.7}
-                onPress={() => setShowToCityModal(true)}
-              >
-                <Text style={styles.locationText}>{toCity}</Text>
-              </TouchableOpacity>
-            </View>
+      {/* Main Bottom Sheet Screen */}
+      <GestureDetector gesture={gesture}>
+        <Animated.View style={[styles.mainContainer, mainScreenStyle]}>
+          <View style={styles.dragHandleArea}>
+            <View style={styles.dragHandle} />
           </View>
 
-          {/* Material Type and Weight */}
-          <View style={styles.detailsRow}>
-            <View style={styles.detailCard}>
-              <Text style={styles.detailLabel}>Material type</Text>
-              <TouchableOpacity
-                style={styles.materialButton}
-                activeOpacity={0.7}
-                onPress={() => setShowMaterialModal(true)}
-              >
-                <MaterialCommunityIcons
-                  name="package-variant"
-                  size={20}
-                  color={isDarkMode ? '#999' : '#666'}
-                />
-                <Text style={styles.materialButtonText}>{materialType}</Text>
-                <Ionicons
-                  name="chevron-down"
-                  size={18}
-                  color={isDarkMode ? '#999' : '#666'}
-                />
-              </TouchableOpacity>
-            </View>
+          <View style={styles.header}>
+            <TouchableOpacity
+              style={styles.backButton}
+              activeOpacity={0.7}
+              onPress={handleClose}
+            >
+              <Ionicons name="close" size={24} color={isDarkMode ? white : '#000'} />
+            </TouchableOpacity>
+            <Text style={styles.headerTitle}>Book truck</Text>
+            <View style={{ width: 40 }} />
+          </View>
 
-            <View style={styles.detailCard}>
-              <Text style={styles.detailLabel}>Ton(MT)</Text>
-              <View style={styles.weightContainer}>
-                <TextInput
-                  style={styles.weightInput}
-                  value={weight}
-                  onChangeText={setWeight}
-                  keyboardType="numeric"
-                  placeholder="18"
-                  placeholderTextColor={isDarkMode ? '#666' : '#999'}
-                />
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+            <View style={styles.card}>
+              <View style={styles.locationRow}>
+                <View style={styles.locationCard}>
+                  <Text style={styles.locationLabel}>From</Text>
+                  <TouchableOpacity
+                    style={styles.locationButton}
+                    activeOpacity={0.7}
+                    onPress={() => openCityModal('fromCity', cities)}
+                  >
+                    <Text style={styles.locationText}>{fromCity}</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={styles.locationCard}>
+                  <Text style={styles.locationLabel}>To</Text>
+                  <TouchableOpacity
+                    style={styles.locationButton}
+                    activeOpacity={0.7}
+                    onPress={() => openCityModal('toCity', cities)}
+                  >
+                    <Text style={styles.locationText}>{toCity}</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <View style={styles.detailsRow}>
+                <View style={styles.detailCard}>
+                  <Text style={styles.detailLabel}>Material type</Text>
+                  <TouchableOpacity
+                    style={styles.materialButton}
+                    activeOpacity={0.7}
+                    onPress={() => openCityModal('material', materialTypes)}
+                  >
+                    <MaterialCommunityIcons name="package-variant" size={20} color={isDarkMode ? '#999' : '#666'} />
+                    <Text style={styles.materialButtonText}>{materialType}</Text>
+                    <Ionicons name="chevron-down" size={18} color={isDarkMode ? '#999' : '#666'} />
+                  </TouchableOpacity>
+                </View>
+
+                <View style={styles.detailCard}>
+                  <Text style={styles.detailLabel}>Ton(MT)</Text>
+                  <View style={styles.weightContainer}>
+                    <TextInput
+                      style={styles.weightInput}
+                      value={weight}
+                      onChangeText={setWeight}
+                      keyboardType="numeric"
+                      placeholder="18"
+                      placeholderTextColor={isDarkMode ? '#666' : '#999'}
+                    />
+                  </View>
+                </View>
               </View>
             </View>
-          </View>
-        </View>
 
-        {/* Open Trucks */}
-        {/* <View style={styles.card}>
-          <View style={styles.sectionTitle}>
-            <MaterialCommunityIcons
-              name="truck-outline"
-              size={20}
-              color={isDarkMode ? white : '#000'}
-            />
-            <Text style={styles.sectionTitleText}>Open</Text>
-          </View>
-          <View style={styles.truckGrid}>
-            {openTrucks.map((truck, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[
-                  styles.truckButton,
-                  selectedTruckType === truck && styles.truckButtonSelected
-                ]}
-                activeOpacity={0.7}
-                onPress={() => setSelectedTruckType(truck)}
-              >
-                <Text style={[
-                  styles.truckButtonText,
-                  selectedTruckType === truck && styles.truckButtonTextSelected
-                ]}>
-                  {truck}
-                </Text>
+            <TouchableOpacity style={styles.bookButton} activeOpacity={0.8} onPress={handleBook}>
+              <Text style={styles.bookButtonText}>Book</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </Animated.View>
+      </GestureDetector>
+
+      {/* Inner Selection Modal */}
+      <Modal
+        visible={showCityModal}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setShowCityModal(false)}
+      >
+        <Pressable style={styles.modalOverlay} onPress={() => setShowCityModal(false)}>
+          <View style={styles.innerModal}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>
+                {modalType === 'fromCity' ? 'Select From City' : 
+                 modalType === 'toCity' ? 'Select To City' : 
+                 'Select Material Type'}
+              </Text>
+              <TouchableOpacity onPress={() => setShowCityModal(false)}>
+                <Ionicons name="close" size={24} color={isDarkMode ? white : '#000'} />
               </TouchableOpacity>
-            ))}
+            </View>
+            <ScrollView>
+              {cityModalData.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.modalItem}
+                  onPress={() => handleSelectCity(item)}
+                >
+                  <Text style={styles.modalItemText}>{item}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
           </View>
-        </View> */}
+        </Pressable>
+      </Modal>
 
-        {/* Closed Trucks */}
-        {/* <View style={styles.card}>
-          <View style={styles.sectionTitle}>
-            <MaterialCommunityIcons
-              name="truck-cargo-container"
-              size={20}
-              color={isDarkMode ? white : '#000'}
-            />
-            <Text style={styles.sectionTitleText}>Closed</Text>
-          </View>
-          <View style={styles.truckGrid}>
-            {closedTrucks.map((truck, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[
-                  styles.truckButton,
-                  selectedTruckType === truck && styles.truckButtonSelected
-                ]}
-                activeOpacity={0.7}
-                onPress={() => setSelectedTruckType(truck)}
-              >
-                <Text style={[
-                  styles.truckButtonText,
-                  selectedTruckType === truck && styles.truckButtonTextSelected
-                ]}>
-                  {truck}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View> */}
-
-        {/* Book Button */}
-      </ScrollView>
-        <TouchableOpacity
-          style={styles.bookButton}
-          activeOpacity={0.8}
-          onPress={handleBook}
-        >
-          <Text style={styles.bookButtonText}>Book</Text>
-        </TouchableOpacity>
-
-      {/* Modals */}
-      <SelectionModal
-        visible={showMaterialModal}
-        onClose={() => setShowMaterialModal(false)}
-        data={materialTypes}
-        selectedValue={materialType}
-        onSelect={setMaterialType}
-        title="Select Material Type"
-      />
-
-      <SelectionModal
-        visible={showFromCityModal}
-        onClose={() => setShowFromCityModal(false)}
-        data={cities}
-        selectedValue={fromCity}
-        onSelect={setFromCity}
-        title="Select From City"
-      />
-
-      <SelectionModal
-        visible={showToCityModal}
-        onClose={() => setShowToCityModal(false)}
-        data={cities}
-        selectedValue={toCity}
-        onSelect={setToCity}
-        title="Select To City"
-      />
-      
-      <SuccessModal
-        visible={modalVisible}
-        onClose={()=>navigation.replace('Tab')}
-      />
-    </View>
+      <SuccessModal visible={modalVisible} onClose={() => navigation.replace('Tab')} />
+    </GestureHandlerRootView>
   );
 };
 

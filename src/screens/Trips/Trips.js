@@ -331,7 +331,7 @@
 //         </View>
 
 //       {/* Amount - Bottom Right */}
-  
+
 //     </TouchableOpacity>
 //   );
 
@@ -970,6 +970,7 @@ import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FilterModal from '../Home/FilterModel';
+import Row from '../../components/wrapper/row';
 
 const TripScreen = ({ navigation }) => {
   const { isDarkMode } = useSelector(state => state.theme);
@@ -1114,7 +1115,7 @@ const TripScreen = ({ navigation }) => {
     }
 
     if (searchQuery.trim()) {
-      filtered = filtered.filter(trip => 
+      filtered = filtered.filter(trip =>
         trip.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
         trip.from.toLowerCase().includes(searchQuery.toLowerCase()) ||
         trip.to.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -1232,19 +1233,24 @@ const TripScreen = ({ navigation }) => {
         </Text>
       </View>
 
-      <View style={styles.locationRow}>
-        <View style={[styles.locationDot, { backgroundColor: '#4CAF50' }]} />
+      <Row style={{ gap: 30 }}>
+        <View style={styles.locationRow}>
+          <View style={[styles.locationDot, { backgroundColor: '#4CAF50' }]} />
+          <Text style={[styles.locationText, { color: isDarkMode ? white : '#000' }]}>
+            {item.from}
+          </Text>
+        </View>
         <Text style={[styles.locationText, { color: isDarkMode ? white : '#000' }]}>
-          {item.from}
+          {'----->'}
         </Text>
-      </View>
+        <View style={styles.locationRow}>
+          <View style={[styles.locationDot, { backgroundColor: '#FF9800' }]} />
+          <Text style={[styles.locationText, { color: isDarkMode ? white : '#000' }]}>
+            {item.to}
+          </Text>
+        </View>
+      </Row>
 
-      <View style={styles.locationRow}>
-        <View style={[styles.locationDot, { backgroundColor: '#FF9800' }]} />
-        <Text style={[styles.locationText, { color: isDarkMode ? white : '#000' }]}>
-          {item.to}
-        </Text>
-      </View>
 
       <View style={styles.trackingContainer}>
         <View style={styles.trackingRow}>
@@ -1272,12 +1278,12 @@ const TripScreen = ({ navigation }) => {
         <View style={[styles.progressBar, { width: `100%` }]}>
           <View style={styles.progressDots}>
             {[...Array(5)].map((_, index) => (
-              <View 
-                key={index} 
+              <View
+                key={index}
                 style={[
                   styles.progressDot,
                   { backgroundColor: index < (item.progress) ? white : 'white' }
-                ]} 
+                ]}
               />
             ))}
           </View>
@@ -1286,8 +1292,8 @@ const TripScreen = ({ navigation }) => {
       <View style={styles.truckIconContainer}>
         {/* <FontAwesome5 name="truck-moving" size={13} color={'white'} /> */}
         <Image
-        source={{uri:'https://cdn-icons-png.freepik.com/512/17489/17489509.png'}}
-        style={{width:30,height:35,resizeMode:'contain', }}
+          source={{ uri: 'https://img.freepik.com/premium-vector/truck-top-view-large-cargo-lorry-with-trailer-from-overhead-freight-transport-commercial-delivery-shipment-heavy-auto-vehicle-flat-vector-illustration-isolated-white-background_198278-31028.jpg' }}
+          style={{ width: 30, height: 35, resizeMode: 'contain', }}
         />
       </View>
     </TouchableOpacity>
@@ -1303,7 +1309,7 @@ const TripScreen = ({ navigation }) => {
         <Text style={[styles.tripId, { color: isDarkMode ? white : '#000' }]}>
           #{item.id}
         </Text>
-        <Text style={[styles.statusBadge, { 
+        <Text style={[styles.statusBadge, {
           backgroundColor: item.status === 'Delivered' ? '#E8F5E9' : '#E3F2FD',
           color: item.status === 'Delivered' ? '#4CAF50' : '#2196F3',
         }]}>
@@ -1332,19 +1338,25 @@ const TripScreen = ({ navigation }) => {
         </Text>
       </View>
 
-      <View style={styles.locationRow}>
-        <View style={[styles.locationDot, { backgroundColor: '#4CAF50' }]} />
-        <Text style={[styles.locationText, { color: isDarkMode ? white : '#000' }]}>
-          {item.from}
-        </Text>
-      </View>
+      <Row style={{ gap: 10 }}>
 
-      <View style={styles.locationRow}>
-        <View style={[styles.locationDot, { backgroundColor: '#FF9800' }]} />
+        <View style={styles.locationRow}>
+          <View style={[styles.locationDot, { backgroundColor: '#4CAF50' }]} />
+          <Text style={[styles.locationText, { color: isDarkMode ? white : '#000' }]}>
+            {item.from}
+          </Text>
+        </View>
         <Text style={[styles.locationText, { color: isDarkMode ? white : '#000' }]}>
-          {item.to}
+          {'------->'}
         </Text>
-      </View>
+        <View style={styles.locationRow}>
+          <View style={[styles.locationDot, { backgroundColor: '#FF9800' }]} />
+          <Text style={[styles.locationText, { color: isDarkMode ? white : '#000' }]}>
+            {item.to}
+          </Text>
+        </View>
+      </Row>
+
 
       {selectedTab === 'Delivered' && item.podStatus && (
         <View style={styles.podBadgeContainer}>
@@ -1412,9 +1424,13 @@ const TripScreen = ({ navigation }) => {
     tabsContainer: {
       flexDirection: 'row',
       gap: 12,
+      // justifyContent:'space-between',
+      // width:'100%'
+      flex: 1,
     },
     tab: {
-      paddingHorizontal: 10,
+      paddingHorizontal: 30,
+      flex: 1,
       paddingVertical: 5,
       borderRadius: 20,
       flexDirection: 'row',
@@ -1491,10 +1507,10 @@ const TripScreen = ({ navigation }) => {
       flexDirection: 'row',
       alignItems: 'center',
       gap: 6,
-      paddingHorizontal: 10,
-      paddingVertical: 5,
+      paddingHorizontal: 8,
+      paddingVertical: 3,
       borderRadius: 8,
-      borderWidth: 1,
+      // borderWidth: 1,
     },
     podFilterActive: {
       backgroundColor: App_Primary_color,
@@ -1652,7 +1668,7 @@ const TripScreen = ({ navigation }) => {
     },
     progressBar: {
       height: '100%',
-      backgroundColor: black,
+      backgroundColor: App_Primary_color,
       borderRadius: 5,
       justifyContent: 'center',
       paddingHorizontal: 5,
@@ -1672,7 +1688,7 @@ const TripScreen = ({ navigation }) => {
     truckIconContainer: {
       position: 'absolute',
       right: 120,
-      alignSelf:'center',
+      alignSelf: 'center',
       bottom: 8,
       width: 20,
       height: 20,

@@ -66,7 +66,12 @@ const StackNavigation = () => {
         <Stack.Screen name={'Otpscreen'} component={OtpScreen} />
         <Stack.Screen name={'LocationPermissionScreen'} component={LocationPermissionScreen} />
         <Stack.Screen name={'HomeScreen'} component={HomeScreen} />
-        <Stack.Screen name={'CreateBookingScreen'} component={CreateBookingScreen} />
+        <Stack.Screen name={'CreateBookingScreen'} component={CreateBookingScreen}
+         options={{
+            animation: 'slide_from_bottom',
+             presentation: 'transparentModal',
+          }}
+        />
         <Stack.Screen name={'NotificationCenter'} component={NotificationCenter} />
 
         <Stack.Screen name={'FAQsScreen'} component={FAQsScreen} />

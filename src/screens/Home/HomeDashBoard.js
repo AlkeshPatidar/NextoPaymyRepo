@@ -629,6 +629,8 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Row from '../../components/wrapper/row';
 import FilterModal from './FilterModel';
 import CustomText from '../../components/TextComponent';
+import IMG from '../../assets/Images';
+import { positionStyle } from 'react-native-flash-message';
 
 const HomeScreen = ({ navigation }) => {
   const { isDarkMode } = useSelector(state => state.theme);
@@ -875,6 +877,8 @@ const HomeScreen = ({ navigation }) => {
       shadowOpacity: 0.1,
       shadowRadius: 8,
       elevation: 5,
+      height:90,
+      justifyContent:'center'
     },
     headerTop: {
       flexDirection: 'row',
@@ -1149,13 +1153,20 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.userName}>Rahul Kumar</Text>
           </View> */}
           {/* Entypo */}
-          <Entypo
+          {/* <Entypo
           name='wallet'
           size={25}
           color={App_Primary_color}
+          /> */}
+          <Image source={IMG.AppLogo}
+          style={{height:120, width:120, position:'absolute', left:0}}
+          resizeMode='contain'
           />
+
           <Row style={{
-            gap: 10
+            gap: 10,
+            position:'absolute',
+            right:0
           }}>
 
             <TouchableOpacity
@@ -1186,7 +1197,7 @@ const HomeScreen = ({ navigation }) => {
           icon={<Feather name="check-circle" size={24} color="#4CAF50" />}
           iconBg="#4CAF50"
           title="Tracking"
-          onPress={() => navigation.navigate('CompletedShipments')}
+          onPress={() => navigation.navigate('TrackingScreen')}
         />
         <StatCard
           icon={<FontAwesome5 name="rupee-sign" size={20} color="#2196F3" />}
