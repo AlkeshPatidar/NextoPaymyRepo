@@ -971,6 +971,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FilterModal from '../Home/FilterModel';
 import Row from '../../components/wrapper/row';
+import IMG from '../../assets/Images';
 
 const TripScreen = ({ navigation }) => {
   const { isDarkMode } = useSelector(state => state.theme);
@@ -1292,8 +1293,8 @@ const TripScreen = ({ navigation }) => {
       <View style={styles.truckIconContainer}>
         {/* <FontAwesome5 name="truck-moving" size={13} color={'white'} /> */}
         <Image
-          source={{ uri: 'https://img.freepik.com/premium-vector/truck-top-view-large-cargo-lorry-with-trailer-from-overhead-freight-transport-commercial-delivery-shipment-heavy-auto-vehicle-flat-vector-illustration-isolated-white-background_198278-31028.jpg' }}
-          style={{ width: 30, height: 35, resizeMode: 'contain', }}
+          source={IMG.truckTop}
+          style={{ width: 35, height: 39, resizeMode: 'contain', }}
         />
       </View>
     </TouchableOpacity>
