@@ -34,7 +34,7 @@ import AccountDetailsScreen from '../../screens/Profile/AccountDetail'
 
 import RatesScreen from '../../screens/Rates/Rates'
 
-
+import TrackingHubScreen from '../../screens/OuterTracking/OuterTracking'
 
 
 
@@ -90,6 +90,8 @@ const StackNavigation = () => {
         <Stack.Screen name={'WebViewScreen'} component={WebViewScreen} />
         <Stack.Screen name={'AccountDetailsScreen'} component={AccountDetailsScreen} />
         <Stack.Screen name={'RatesScreen'} component={RatesScreen} />
+        <Stack.Screen name={'TrackingHubScreen'} component={TrackingHubScreen} />
+
 
 
 

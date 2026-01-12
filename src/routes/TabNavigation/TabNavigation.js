@@ -1683,8 +1683,8 @@ function TabNavigation() {
                     colors={['rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.15)']}
                     style={styles.focusedIconWrapper}
                   >
-                    <Icon
-                      name="car"
+                    <Fontisto
+                      name="truck"
                       size={25}
                       color={white}
                     />
@@ -1695,8 +1695,8 @@ function TabNavigation() {
                 </View>
               ) : (
                 <View style={styles.unfocusedContainer}>
-                  <Icon
-                    name="car"
+                  <Fontisto
+                    name="truck"
                     size={22}
                     color={'rgba(255, 255, 255, 0.6)'}
                   />

@@ -877,8 +877,8 @@ const HomeScreen = ({ navigation }) => {
       shadowOpacity: 0.1,
       shadowRadius: 8,
       elevation: 5,
-      height:90,
-      justifyContent:'center'
+      height: 90,
+      justifyContent: 'center'
     },
     headerTop: {
       flexDirection: 'row',
@@ -978,37 +978,37 @@ const HomeScreen = ({ navigation }) => {
       marginTop: 10,
       paddingHorizontal: 10,
     },
-      filterButton: {
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 6,
-          paddingHorizontal: 10,
-          paddingVertical: 5,
-          borderRadius: 8,
-          backgroundColor: isDarkMode ? dark33 : white,
-          position: 'relative',
-        },
-        filterButtonText: {
-          fontSize: 13,
-          fontFamily: FONTS_FAMILY.Poppins_Medium,
-          color: isDarkMode ? white : '#000',
-        },
-        filterBadge: {
-          position: 'absolute',
-          top: -4,
-          right: -4,
-          backgroundColor: App_Primary_color,
-          width: 18,
-          height: 18,
-          borderRadius: 9,
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-        filterBadgeText: {
-          color: white,
-          fontSize: 10,
-          fontFamily: FONTS_FAMILY.Poppins_Bold,
-        },
+    filterButton: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 6,
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      borderRadius: 8,
+      backgroundColor: isDarkMode ? dark33 : white,
+      position: 'relative',
+    },
+    filterButtonText: {
+      fontSize: 13,
+      fontFamily: FONTS_FAMILY.Poppins_Medium,
+      color: isDarkMode ? white : '#000',
+    },
+    filterBadge: {
+      position: 'absolute',
+      top: -4,
+      right: -4,
+      backgroundColor: App_Primary_color,
+      width: 18,
+      height: 18,
+      borderRadius: 9,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    filterBadgeText: {
+      color: white,
+      fontSize: 10,
+      fontFamily: FONTS_FAMILY.Poppins_Bold,
+    },
     sectionHeader: {
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -1159,14 +1159,14 @@ const HomeScreen = ({ navigation }) => {
           color={App_Primary_color}
           /> */}
           <Image source={IMG.AppLogo}
-          style={{height:120, width:120, position:'absolute', left:0}}
-          resizeMode='contain'
+            style={{ height: 120, width: 120, position: 'absolute', left: 0 }}
+            resizeMode='contain'
           />
 
           <Row style={{
             gap: 10,
-            position:'absolute',
-            right:0
+            position: 'absolute',
+            right: 0
           }}>
 
             <TouchableOpacity
@@ -1197,7 +1197,7 @@ const HomeScreen = ({ navigation }) => {
           icon={<Feather name="check-circle" size={24} color="#4CAF50" />}
           iconBg="#4CAF50"
           title="Tracking"
-          onPress={() => navigation.navigate('TrackingScreen')}
+          onPress={() => navigation.navigate('TrackingHubScreen')}
         />
         <StatCard
           icon={<FontAwesome5 name="rupee-sign" size={20} color="#2196F3" />}
@@ -1207,8 +1207,8 @@ const HomeScreen = ({ navigation }) => {
         />
       </View>
 
-      <Image source={{uri:'https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}}
-      style={{width:'100%',height:120,alignSelf:'center',marginTop:10,}}
+      <Image source={{ uri: 'https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}
+        style={{ width: '100%', height: 120, alignSelf: 'center', marginTop: 10, }}
       />
 
       <View style={styles.sectionHeader}>
@@ -1226,19 +1226,19 @@ const HomeScreen = ({ navigation }) => {
           ) : (
             <>
               {/* <Ionicons name="filter" size={18} color={App_Primary_color} /> */}
-               <TouchableOpacity
-                          style={styles.filterButton}
-                          activeOpacity={0.7}
-                          onPress={() => handleFilterClick()}
-                        >
-                          <Ionicons
-                            name="options-outline"
-                            size={18}
-                            color={isDarkMode ? white : '#000'}
-                          />
-                          <Text style={styles.filterButtonText}>Filter</Text>
-                        
-                        </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.filterButton}
+                activeOpacity={0.7}
+                onPress={() => handleFilterClick()}
+              >
+                <Ionicons
+                  name="options-outline"
+                  size={18}
+                  color={isDarkMode ? white : '#000'}
+                />
+                <Text style={styles.filterButtonText}>Filter</Text>
+
+              </TouchableOpacity>
               {getTotalFilterCount() > 0 && (
                 <View style={styles.filterBadge}>
                   <Text style={styles.filterBadgeText}>
