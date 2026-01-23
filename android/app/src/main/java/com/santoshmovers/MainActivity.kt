@@ -1,4 +1,4 @@
-package com.santoshmovers
+package com.nextopay
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

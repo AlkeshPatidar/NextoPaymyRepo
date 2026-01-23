@@ -1,459 +1,275 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  StatusBar,
-  ScrollView,
-  FlatList,
+    View,
+    Text,
+    TouchableOpacity,
+    StyleSheet,
+    StatusBar,
+    ScrollView,
+    Image,
+    ImageBackground,
 } from 'react-native';
 import { FONTS_FAMILY } from '../../assets/Fonts';
-import { 
-  App_Primary_color, 
-  dark33, 
-  dark55, 
-  darkMode25, 
-  white 
-} from '../../common/Colors/colors';
-import { useSelector } from 'react-redux';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { App_Primary_color, white } from '../../common/Colors/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Feather from 'react-native-vector-icons/Feather';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import IMG from '../../assets/Images';
 
-const NotificationCenter = ({ navigation }) => {
-  const { isDarkMode } = useSelector(state => state.theme);
-  const [selectedFilter, setSelectedFilter] = useState('All');
+const BillNotificationsScreen = ({ navigation }) => {
+    const notifications = [
+        {
+            id: '1',
+            company: 'Aiynar Vidyut Vitron Nagam Ltd.',
+            category: 'Electricity',
+            date: '12/01/2025',
+            logo: 'https://cdn-icons-png.flaticon.com/512/2917/2917995.png',
+            logoColor: '#FF9800',
+        },
+        {
+            id: '2',
+            company: 'Airtel Digital TV',
+            category: 'DTH',
+            date: '12/01/2025',
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Airtel_logo.svg/2560px-Airtel_logo.svg.png',
+            logoColor: '#E31837',
+        },
+        {
+            id: '3',
+            company: 'Indane Gas (Indian Oil )',
+            category: 'Gas',
+            date: '12/01/2025',
+            logo: 'https://cdn-icons-png.flaticon.com/512/2917/2917995.png',
+            logoColor: '#FF5722',
+        },
+        {
+            id: '4',
+            company: 'Aiynar Vidyut Vitron Nagam Ltd.',
+            category: 'Electricity',
+            date: '12/01/2025',
+            logo: 'https://cdn-icons-png.flaticon.com/512/2917/2917995.png',
+            logoColor: '#FF9800',
+        },
+        {
+            id: '5',
+            company: 'Airtel Digital TV',
+            category: 'DTH',
+            date: '12/01/2025',
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Airtel_logo.svg/2560px-Airtel_logo.svg.png',
+            logoColor: '#E31837',
+        },
+        {
+            id: '6',
+            company: 'Indane Gas (Indian Oil )',
+            category: 'Gas',
+            date: '12/01/2025',
+            logo: 'https://cdn-icons-png.flaticon.com/512/2917/2917995.png',
+            logoColor: '#FF5722',
+        },
+        {
+            id: '7',
+            company: 'Aiynar Vidyut Vitron Nagam Ltd.',
+            category: 'Electricity',
+            date: '12/01/2025',
+            logo: 'https://cdn-icons-png.flaticon.com/512/2917/2917995.png',
+            logoColor: '#FF9800',
+        },
+        {
+            id: '8',
+            company: 'Airtel Digital TV',
+            category: 'DTH',
+            date: '12/01/2025',
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Airtel_logo.svg/2560px-Airtel_logo.svg.png',
+            logoColor: '#E31837',
+        },
+        {
+            id: '9',
+            company: 'Indane Gas (Indian Oil )',
+            category: 'Gas',
+            date: '12/01/2025',
+            logo: 'https://cdn-icons-png.flaticon.com/512/2917/2917995.png',
+            logoColor: '#FF5722',
+        },
+        {
+            id: '10',
+            company: 'Aiynar Vidyut Vitron Nagam Ltd.',
+            category: 'Electricity',
+            date: '12/01/2025',
+            logo: 'https://cdn-icons-png.flaticon.com/512/2917/2917995.png',
+            logoColor: '#FF9800',
+        },
+        {
+            id: '11',
+            company: 'Airtel Digital TV',
+            category: 'DTH',
+            date: '12/01/2025',
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Airtel_logo.svg/2560px-Airtel_logo.svg.png',
+            logoColor: '#E31837',
+        },
+    ];
 
-  const filters = ['All', 'Truck', 'Loading', 'Delivery', 'POD', 'Payment'];
-
-  const [notifications, setNotifications] = useState([
-    {
-      id: '1',
-      type: 'truck_assigned',
-      title: 'Truck Assigned',
-      message: 'Truck #TRK-4523 has been assigned to your shipment #SHP-8901',
-      time: '2 minutes ago',
-      bookingId: 'BK001234',
-      read: false,
-      icon: 'truck-fast',
-      iconType: 'MaterialCommunityIcons',
-      color: '#2196F3',
-    },
-    {
-      id: '2',
-      type: 'loaded',
-      title: 'Loaded',
-      message: 'Your shipment #SHP-8901 has been loaded and is ready for dispatch',
-      time: '15 minutes ago',
-      bookingId: 'BK001234',
-      read: false,
-      icon: 'package-variant-closed',
-      iconType: 'MaterialCommunityIcons',
-      color: '#9C27B0',
-    },
-    {
-      id: '3',
-      type: 'delivered',
-      title: 'Delivered',
-      message: 'Shipment #SHP-8845 has been successfully delivered to the destination',
-      time: '1 hour ago',
-      bookingId: 'BK001233',
-      read: false,
-      icon: 'check-circle',
-      iconType: 'Feather',
-      color: '#4CAF50',
-    },
-    {
-      id: '4',
-      type: 'pod_uploaded',
-      title: 'POD Uploaded',
-      message: 'Proof of Delivery for shipment #SHP-8845 has been uploaded and verified',
-      time: '1 hour ago',
-      bookingId: 'BK001233',
-      read: true,
-      icon: 'cloud-upload',
-      iconType: 'Feather',
-      color: '#00BCD4',
-    },
-    {
-      id: '5',
-      type: 'payment_success',
-      title: 'Payment Success',
-      message: 'Payment of ₹45,000 for shipment #SHP-8845 processed successfully',
-      time: '2 hours ago',
-      bookingId: 'BK001233',
-      read: true,
-      icon: 'check-circle',
-      iconType: 'FontAwesome5',
-      color: '#4CAF50',
-    },
-    {
-      id: '6',
-      type: 'payment_failed',
-      title: 'Payment Failed',
-      message: 'Payment for shipment #SHP-8823 failed. Please retry or update payment method',
-      time: '3 hours ago',
-      bookingId: 'BK001232',
-      read: false,
-      icon: 'x-circle',
-      iconType: 'Feather',
-      color: '#F44336',
-    },
-    {
-      id: '7',
-      type: 'truck_assigned',
-      title: 'Truck Assigned',
-      message: 'Truck #TRK-2341 has been assigned to your shipment #SHP-8912',
-      time: '5 hours ago',
-      bookingId: 'BK001231',
-      read: true,
-      icon: 'truck-fast',
-      iconType: 'MaterialCommunityIcons',
-      color: '#2196F3',
-    },
-    {
-      id: '8',
-      type: 'loaded',
-      title: 'Loaded',
-      message: 'Your shipment #SHP-8912 has been loaded successfully',
-      time: '6 hours ago',
-      bookingId: 'BK001231',
-      read: true,
-      icon: 'package-variant-closed',
-      iconType: 'MaterialCommunityIcons',
-      color: '#9C27B0',
-    },
-  ]);
-
-  const getFilteredNotifications = () => {
-    if (selectedFilter === 'All') return notifications;
-    
-    const filterMap = {
-      'Truck': 'truck_assigned',
-      'Loading': 'loaded',
-      'Delivery': 'delivered',
-      'POD': 'pod_uploaded',
-      'Payment': ['payment_success', 'payment_failed'],
-    };
-
-    const filterType = filterMap[selectedFilter];
-    
-    if (Array.isArray(filterType)) {
-      return notifications.filter(n => filterType.includes(n.type));
-    }
-    
-    return notifications.filter(n => n.type === filterType);
-  };
-
-  const unreadCount = notifications.filter(n => !n.read).length;
-
-  const renderIcon = (notification) => {
-    switch (notification.iconType) {
-      case 'MaterialCommunityIcons':
-        return <MaterialCommunityIcons name={notification.icon} size={20} color={white} />;
-      case 'Feather':
-        return <Feather name={notification.icon} size={20} color={white} />;
-      case 'FontAwesome5':
-        return <FontAwesome5 name={notification.icon} size={18} color={white} />;
-      default:
-        return <Ionicons name={notification.icon} size={20} color={white} />;
-    }
-  };
-
-  const NotificationCard = ({ item }) => (
-    <TouchableOpacity 
-      style={[
-        styles.notificationCard, 
-        { backgroundColor: isDarkMode ? dark33 : white },
-        !item.read && { backgroundColor: isDarkMode ? dark55 : '#F0F7FF' }
-      ]}
-      activeOpacity={0.7}
-      onPress={() => console.log('Notification clicked:', item.id)}
-    >
-      <View style={styles.notificationContent}>
-        <View style={[styles.iconContainer, { backgroundColor: item.color }]}>
-          {renderIcon(item)}
-        </View>
-        
-        <View style={styles.textContainer}>
-          <View style={styles.titleRow}>
-            <Text style={[styles.notificationTitle, { color: isDarkMode ? white : '#000' }]}>
-              {item.title}
-            </Text>
-            {!item.read && <View style={styles.unreadDot} />}
-          </View>
-          
-          <Text 
-            style={[styles.notificationMessage, { color: isDarkMode ? '#999' : '#666' }]}
-            numberOfLines={2}
-          >
-            {item.message}
-          </Text>
-          
-          <View style={styles.notificationFooter}>
-            <Text style={[styles.timeText, { color: isDarkMode ? '#777' : '#999' }]}>
-              {item.time}
-            </Text>
-            <Text style={[styles.bookingIdText, { color: App_Primary_color }]}>
-              {item.bookingId}
-            </Text>
-          </View>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
-    },
-    header: {
-      backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 30,
-      paddingBottom:10,
-      paddingHorizontal: 20,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 8,
-      elevation: 5,
-    },
-    headerTop: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: 16,
-    },
-    headerLeft: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    backButton: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
-      backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 12,
-    },
-    headerTitle: {
-      fontSize: 20,
-      fontFamily: FONTS_FAMILY.Poppins_Bold,
-      color: isDarkMode ? white : '#000',
-    },
-    notificationBadge: {
-      backgroundColor: '#F44336',
-      paddingHorizontal: 10,
-      paddingVertical: 4,
-      borderRadius: 12,
-    },
-    badgeText: {
-      color: white,
-      fontSize: 12,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-    },
-    filterContainer: {
-      paddingVertical: 0,
-    },
-    filterScrollContent: {
-      paddingHorizontal: 20,
-      gap: 8,
-    },
-    filterChip: {
-      paddingHorizontal: 10,
-      paddingVertical: 5,
-      borderRadius: 10,
-      backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
-      marginRight: 8,
-    },
-    filterChipActive: {
-      backgroundColor: App_Primary_color,
-    },
-    filterText: {
-      fontSize: 12,
-      fontFamily: FONTS_FAMILY.Poppins_Medium,
-      color: isDarkMode ? '#999' : '#666',
-    },
-    filterTextActive: {
-      color: white,
-    },
-    contentContainer: {
-      paddingHorizontal: 10,
-      paddingTop: 10,
-      paddingBottom: 100,
-    },
-    notificationCard: {
-      borderRadius: 16,
-      padding: 10,
-      marginBottom: 12,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.05,
-      shadowRadius: 8,
-      elevation: 3,
-    },
-    notificationContent: {
-      flexDirection: 'row',
-    },
-    iconContainer: {
-      width: 33,
-      height: 33,
-      borderRadius: 12,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 12,
-    },
-    textContainer: {
-      flex: 1,
-    },
-    titleRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 4,
-    },
-    notificationTitle: {
-      fontSize: 14,
-      fontFamily: FONTS_FAMILY.Poppins_Medium,
-      flex: 1,
-    },
-    unreadDot: {
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      backgroundColor: App_Primary_color,
-      marginLeft: 8,
-    },
-    notificationMessage: {
-      fontSize: 12,
-      fontFamily: FONTS_FAMILY.Poppins_Regular,
-      lineHeight: 20,
-      marginBottom: 5,
-    },
-    notificationFooter: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    timeText: {
-      fontSize: 11,
-      fontFamily: FONTS_FAMILY.Poppins_Regular,
-    },
-    bookingIdText: {
-      fontSize: 11,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-    },
-    emptyContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingVertical: 60,
-    },
-    emptyText: {
-      fontSize: 16,
-      fontFamily: FONTS_FAMILY.Poppins_Regular,
-      color: isDarkMode ? '#999' : '#666',
-      marginTop: 16,
-    },
-    emptySubText: {
-      fontSize: 13,
-      fontFamily: FONTS_FAMILY.Poppins_Regular,
-      color: isDarkMode ? '#777' : '#999',
-      marginTop: 8,
-    },
-  });
-
-  const filteredNotifications = getFilteredNotifications();
-
-  return (
-    <View style={styles.container}>
-      <StatusBar 
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'} 
-        backgroundColor={isDarkMode ? dark33 : white} 
-      />
-
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerTop}>
-          <View style={styles.headerLeft}>
-            <TouchableOpacity 
-              style={styles.backButton}
-              activeOpacity={0.7}
-              onPress={() => navigation.goBack()}
-            >
-              <Ionicons 
-                name="arrow-back" 
-                size={24} 
-                color={isDarkMode ? white : '#000'} 
-              />
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>Notifications</Text>
-          </View>
-          
-          {unreadCount > 0 && (
-            <View style={styles.notificationBadge}>
-              <Text style={styles.badgeText}>{unreadCount} New</Text>
+    const NotificationCard = ({ item }) => (
+        <View style={styles.notificationCard}>
+            <View style={styles.cardLeft}>
+                <View style={[styles.logoContainer, { backgroundColor: item.logoColor + '20' }]}>
+                    <View style={[styles.logoInner, { backgroundColor: item.logoColor }]}>
+                        <Text style={styles.logoText}>
+                            {item.category === 'Electricity' ? '⚡' : 
+                             item.category === 'DTH' ? '📡' : '🔥'}
+                        </Text>
+                    </View>
+                </View>
+                <View style={styles.cardInfo}>
+                    <Text style={styles.companyName} numberOfLines={1}>
+                        {item.company}
+                    </Text>
+                    <Text style={styles.dateText}>{item.date}</Text>
+                </View>
             </View>
-          )}
-        </View>
-
-        {/* Filter Chips */}
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.filterScrollContent}
-          style={styles.filterContainer}
-        >
-          {filters.map((filter) => (
             <TouchableOpacity
-              key={filter}
-              style={[
-                styles.filterChip,
-                selectedFilter === filter && styles.filterChipActive
-              ]}
-              activeOpacity={0.7}
-              onPress={() => setSelectedFilter(filter)}
+                style={styles.deleteButton}
+                activeOpacity={0.7}
+                onPress={() => {}}
             >
-              <Text 
-                style={[
-                  styles.filterText,
-                  selectedFilter === filter && styles.filterTextActive
-                ]}
-              >
-                {filter}
-              </Text>
+                <Ionicons name="trash-outline" size={20} color="#999" />
             </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
+        </View>
+    );
 
-      {/* Notifications List */}
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.contentContainer}
-      >
-        {filteredNotifications.length > 0 ? (
-          filteredNotifications.map((item) => (
-            <NotificationCard key={item.id} item={item} />
-          ))
-        ) : (
-          <View style={styles.emptyContainer}>
-            <Ionicons 
-              name="notifications-off-outline" 
-              size={64} 
-              color={isDarkMode ? '#666' : '#CCC'} 
-            />
-            <Text style={styles.emptyText}>No notifications</Text>
-            <Text style={styles.emptySubText}>
-              You're all caught up!
-            </Text>
-          </View>
-        )}
-      </ScrollView>
-    </View>
-  );
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: '#F5F3FF',
+        },
+        headerBg: {
+            height: 90,
+            paddingTop: 35,
+        },
+        headerContent: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingHorizontal: 20,
+            justifyContent: 'space-between',
+        },
+        headerLeft: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 15,
+            flex: 1,
+        },
+        backButton: {
+            width: 30,
+            height: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        headerTitle: {
+            fontSize: 16,
+            fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+            color: App_Primary_color,
+        },
+        headerLine: {
+            height: 3,
+            width: '100%',
+            backgroundColor: App_Primary_color,
+            bottom: 10,
+        },
+        scrollContent: {
+            paddingBottom: 20,
+        },
+        notificationCard: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            backgroundColor: white,
+            paddingHorizontal: 10,
+            paddingVertical: 9,
+            marginHorizontal: 10,
+            // marginTop: 10,
+            // borderRadius: 8,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.05,
+            shadowRadius: 4,
+            elevation: 2,
+        },
+        cardLeft: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            flex: 1,
+            gap: 12,
+        },
+        logoContainer: {
+            width: 48,
+            height: 48,
+            borderRadius: 24,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        logoInner: {
+            width: 40,
+            height: 40,
+            borderRadius: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        logoText: {
+            fontSize: 20,
+        },
+        cardInfo: {
+            flex: 1,
+        },
+        companyName: {
+            fontSize: 13,
+            fontFamily: FONTS_FAMILY.Poppins_Medium,
+            color: '#1A1A1A',
+            marginBottom: 2,
+        },
+        dateText: {
+            fontSize: 11,
+            fontFamily: FONTS_FAMILY.Poppins_Regular,
+            color: '#999',
+        },
+        deleteButton: {
+            width: 40,
+            height: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+    });
+
+    return (
+        <View style={styles.container}>
+            <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+
+            {/* Header */}
+            <ImageBackground source={IMG.HeaderBg} style={styles.headerBg}>
+                <View style={styles.headerContent}>
+                    <View style={styles.headerLeft}>
+                        <TouchableOpacity
+                            style={styles.backButton}
+                            activeOpacity={0.7}
+                            onPress={() => navigation.goBack()}
+                        >
+                            <Ionicons name="chevron-back" size={24} color={App_Primary_color} />
+                        </TouchableOpacity>
+
+                        <Text style={styles.headerTitle}>Bill Notifications</Text>
+                    </View>
+                </View>
+            </ImageBackground>
+            <View style={styles.headerLine} />
+
+            {/* Notifications List */}
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.scrollContent}
+            >
+                {notifications.map((notification) => (
+                    <NotificationCard key={notification.id} item={notification} />
+                ))}
+            </ScrollView>
+        </View>
+    );
 };
 
-export default NotificationCenter;
+export default BillNotificationsScreen;

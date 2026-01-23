@@ -11,6 +11,9 @@ import BackBlackBg from './BackBlackBg.svg'
 import SearchWIthBg from './SearchWIthBg.svg'
 import Filter from './Filter.svg'
 import BgEff from './bgEff.svg'
+import BharatPay from './BharatPay.svg'
+import NextoPayLogo from './NextoPayLogo.svg'
+
 
 
 
@@ -35,6 +38,8 @@ export {
   EditIcon,
   BackBlackBg,
   SearchWIthBg,
-  Filter
+  Filter,
+  BharatPay,
+  NextoPayLogo
 
 }

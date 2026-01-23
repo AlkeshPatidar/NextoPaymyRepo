@@ -1,508 +1,4 @@
-// import React, { useState } from 'react';
-// import {
-//   View,
-//   Text,
-//   TouchableOpacity,
-//   StyleSheet,
-//   StatusBar,
-//   ScrollView,
-//   Image,
-//   Alert,
-// } from 'react-native';
-// import { FONTS_FAMILY } from '../../assets/Fonts';
-// import {
-//   App_Primary_color,
-//   dark33,
-//   dark55,
-//   darkMode25,
-//   white
-// } from '../../common/Colors/colors';
-// import { useSelector } from 'react-redux';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
-// import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-// import Feather from 'react-native-vector-icons/Feather';
-// import AntDesign from 'react-native-vector-icons/AntDesign';
-
-// const ProfileScreen = ({ navigation }) => {
-//   const { isDarkMode } = useSelector(state => state.theme);
-
-//   // User data - Replace with API/Redux
-//   const [userData] = useState({
-//     name: 'Rahul Kumar',
-//     email: 'rahul.kumar@example.com',
-//     phone: '+91 98765 43210',
-//     companyName: 'Kumar Logistics Pvt Ltd',
-//     memberSince: 'Jan 23',
-//     totalBookings: 145,
-//     profileImage: null, // Add image URL if available
-//   });
-
-//   const handleLogout = () => {
-//     Alert.alert(
-//       'Logout',
-//       'Are you sure you want to logout?',
-//       [
-//         { text: 'Cancel', style: 'cancel' },
-//         {
-//           text: 'Logout',
-//           style: 'destructive',
-//           onPress: () => {
-//             // Add logout logic here
-//             console.log('User logged out');
-//           }
-//         }
-//       ]
-//     );
-//   };
-
-//   const MenuSection = ({ title, items }) => (
-//     <View style={styles.menuSection}>
-//       <Text style={[styles.sectionTitle, { color: isDarkMode ? '#999' : '#666' }]}>
-//         {title}
-//       </Text>
-//       <View style={[styles.menuContainer, { backgroundColor: isDarkMode ? dark33 : white }]}>
-//         {items.map((item, index) => (
-//           <React.Fragment key={item.id}>
-//             <TouchableOpacity
-//               style={styles.menuItem}
-//               activeOpacity={0.7}
-//               onPress={item.onPress}
-//             >
-//               <View style={styles.menuItemLeft}>
-//                 <View style={[styles.iconContainer, { backgroundColor: item.iconBg + '20' }]}>
-//                   {item.icon}
-//                 </View>
-//                 <View style={styles.menuTextContainer}>
-//                   <Text style={[styles.menuTitle, { color: isDarkMode ? white : '#000' }]}>
-//                     {item.title}
-//                   </Text>
-//                   {item.subtitle && (
-//                     <Text style={[styles.menuSubtitle, { color: isDarkMode ? '#999' : '#666' }]}>
-//                       {item.subtitle}
-//                     </Text>
-//                   )}
-//                 </View>
-//               </View>
-//               <Feather
-//                 name="chevron-right"
-//                 size={20}
-//                 color={isDarkMode ? '#666' : '#999'}
-//               />
-//             </TouchableOpacity>
-//             {index < items.length - 1 && (
-//               <View style={[styles.divider, { backgroundColor: isDarkMode ? dark55 : '#F0F0F0' }]} />
-//             )}
-//           </React.Fragment>
-//         ))}
-//       </View>
-//     </View>
-//   );
-
-//   const accountMenuItems = [
-//     // {
-//     //   id: '1',
-//     //   title: 'Edit Profile',
-//     //   subtitle: 'Update your personal information',
-//     //   icon: <Feather name="edit-2" size={20} color="#4CAF50" />,
-//     //   iconBg: '#4CAF50',
-//     //   onPress: () => navigation.navigate('EditProfile'),
-//     // },
-//     {
-//       id: '2',
-//       title: 'Company Information',
-//       subtitle: userData.companyName,
-//       icon: <MaterialCommunityIcons name="office-building" size={22} color="#2196F3" />,
-//       iconBg: '#2196F3',
-//       onPress: () => navigation.navigate('CompanyInfo'),
-//     },
-//        {
-//       id: '4',
-//       title: 'Account Details',
-//       subtitle: 'Balance Rs. 0',
-//       icon: <AntDesign name="account-book" size={22} color="#FF9800" />,
-//       iconBg: '#FF9800',
-//       onPress: () => navigation.navigate('AccountDetailsScreen'),
-//     },
-//     {
-//       id: '3',
-//       title: 'Search GST',
-//       subtitle: 'Search your GST details',
-//       icon: <Ionicons name="search" size={22} color="#FF9800" />,
-//       iconBg: '#FF9800',
-//       onPress: () => navigation.navigate('WebViewScreen'),
-//     },
-
-//   ];
-
-//   const supportMenuItems = [
-//     {
-//       id: '1',
-//       title: 'FAQs',
-//       subtitle: 'Find answers to common questions',
-//       icon: <AntDesign name="questioncircleo" size={20} color="#9C27B0" />,
-//       iconBg: '#9C27B0',
-//       onPress: () => navigation.navigate('FAQsScreen'),
-//     },
-//     {
-//       id: '2',
-//       title: 'Call Support',
-//       subtitle: '24/7 customer support available',
-//       icon: <Feather name="phone-call" size={20} color="#00BCD4" />,
-//       iconBg: '#00BCD4',
-//       onPress: () => {
-//         // Add call functionality
-//         // console.log('Calling support...');
-//         navigation.navigate('CallSupportScreen')
-//       },
-//     },
-//     {
-//       id: '3',
-//       title: 'Submit Complaint',
-//       subtitle: 'Report an issue or complaint',
-//       icon: <MaterialCommunityIcons name="message-alert" size={22} color="#F44336" />,
-//       iconBg: '#F44336',
-//       onPress: () => navigation.navigate('SubmitComplaintScreen'),
-//     },
-//   ];
-
-//   const legalMenuItems = [
-//     {
-//       id: '1',
-//       title: 'Terms & Conditions',
-//       subtitle: 'Read our terms of service',
-//       icon: <Ionicons name="document-text-outline" size={22} color="#607D8B" />,
-//       iconBg: '#607D8B',
-//       onPress: () => navigation.navigate('TermsAndConditionsScreen'),
-//     },
-//     {
-//       id: '2',
-//       title: 'Privacy Policy',
-//       subtitle: 'How we handle your data',
-//       icon: <MaterialCommunityIcons name="shield-check" size={22} color="#795548" />,
-//       iconBg: '#795548',
-//       onPress: () => navigation.navigate('PrivacyPolicyScreen'),
-//     },
-//   ];
-
-//   const styles = StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
-//     },
-//     header: {
-//       backgroundColor: isDarkMode ? dark33 : white,
-//       paddingTop: 30,
-//       paddingBottom: 10,
-//       paddingHorizontal: 20,
-//       shadowColor: '#000',
-//       shadowOffset: { width: 0, height: 2 },
-//       shadowOpacity: 0.1,
-//       shadowRadius: 8,
-//       elevation: 5,
-//     },
-//     headerTop: {
-//       flexDirection: 'row',
-//       justifyContent: 'space-between',
-//       alignItems: 'center',
-//       marginBottom: 10,
-//     },
-//     headerTitle: {
-//       fontSize: 20,
-//       fontFamily: FONTS_FAMILY.Poppins_Bold,
-//       color: isDarkMode ? white : '#000',
-//     },
-//     settingsButton: {
-//       width: 30,
-//       height: 30,
-//       borderRadius: 20,
-//       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//     },
-//     profileCard: {
-//       flexDirection: 'row',
-//       alignItems: 'center',
-//       backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
-//       padding: 10,
-//       borderRadius: 16,
-//     },
-//     avatarContainer: {
-//       width: 60,
-//       height: 60,
-//       borderRadius: 35,
-//       backgroundColor: App_Primary_color,
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//       marginRight: 16,
-//       shadowColor: App_Primary_color,
-//       shadowOffset: { width: 0, height: 4 },
-//       shadowOpacity: 0.3,
-//       shadowRadius: 8,
-//       elevation: 5,
-//     },
-//     avatarImage: {
-//       width: 60,
-//       height: 60,
-//       borderRadius: 35,
-//     },
-//     avatarText: {
-//       fontSize: 20,
-//       fontFamily: FONTS_FAMILY.Poppins_Bold,
-//       color: white,
-//     },
-//     profileInfo: {
-//       flex: 1,
-//     },
-//     profileName: {
-//       fontSize: 14,
-//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-//       color: isDarkMode ? white : '#000',
-//       // marginBottom: 4,
-//     },
-//     profileEmail: {
-//       fontSize: 12,
-//       fontFamily: FONTS_FAMILY.Poppins_Regular,
-//       color: isDarkMode ? '#999' : '#666',
-//       marginBottom: 2,
-//     },
-//     profilePhone: {
-//       fontSize: 12,
-//       fontFamily: FONTS_FAMILY.Poppins_Regular,
-//       color: isDarkMode ? '#999' : '#666',
-//     },
-//     statsContainer: {
-//       flexDirection: 'row',
-//       paddingHorizontal: 10,
-//       paddingVertical: 20,
-//       gap: 12,
-//     },
-//     statBox: {
-//       flex: 1,
-//       backgroundColor: isDarkMode ? dark33 : white,
-//       padding: 10,
-//       borderRadius: 16,
-//       alignItems: 'center',
-//       shadowColor: '#000',
-//       shadowOffset: { width: 0, height: 2 },
-//       shadowOpacity: 0.05,
-//       shadowRadius: 8,
-//       elevation: 3,
-//       height: 90
-//     },
-//     statValue: {
-//       fontSize: 18,
-//       fontFamily: FONTS_FAMILY.Poppins_Bold,
-//       color: App_Primary_color,
-//       // marginBottom: 4,
-//     },
-//     statLabel: {
-//       fontSize: 12,
-//       fontFamily: FONTS_FAMILY.Poppins_Regular,
-//       color: isDarkMode ? '#999' : '#666',
-//       textAlign: 'center',
-//     },
-//     scrollContent: {
-//       paddingBottom: 100,
-//     },
-//     menuSection: {
-//       marginBottom: 15,
-//       paddingHorizontal: 20,
-//     },
-//     sectionTitle: {
-//       fontSize: 13,
-//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-//       textTransform: 'uppercase',
-//       letterSpacing: 0.5,
-//       marginBottom: 8,
-//     },
-//     menuContainer: {
-//       borderRadius: 10,
-//       overflow: 'hidden',
-//       shadowColor: '#000',
-//       shadowOffset: { width: 0, height: 2 },
-//       shadowOpacity: 0.05,
-//       shadowRadius: 8,
-//       elevation: 3,
-//     },
-//     menuItem: {
-//       flexDirection: 'row',
-//       alignItems: 'center',
-//       justifyContent: 'space-between',
-//       padding: 10,
-//     },
-//     menuItemLeft: {
-//       flexDirection: 'row',
-//       alignItems: 'center',
-//       flex: 1,
-//     },
-//     iconContainer: {
-//       width: 33,
-//       height: 33,
-//       borderRadius: 22,
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//       marginRight: 12,
-//     },
-//     menuTextContainer: {
-//       flex: 1,
-//     },
-//     menuTitle: {
-//       fontSize: 13,
-//       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-//       // marginBottom: 2,
-//     },
-//     menuSubtitle: {
-//       fontSize: 11,
-//       fontFamily: FONTS_FAMILY.Poppins_Regular,
-//     },
-//     divider: {
-//       height: 1,
-//       // marginLeft: 72,
-//     },
-//     logoutButton: {
-//       marginHorizontal: 10,
-//       // marginTop: 12,
-//       backgroundColor: isDarkMode ? dark33 : white,
-//       borderRadius: 10,
-//       padding: 8,
-//       flexDirection: 'row',
-//       alignItems: 'center',
-//       justifyContent: 'center',
-//       shadowColor: '#000',
-//       shadowOffset: { width: 0, height: 2 },
-//       shadowOpacity: 0.05,
-//       shadowRadius: 8,
-//       elevation: 3,
-//     },
-//     logoutText: {
-//       fontSize: 14,
-//       fontFamily: FONTS_FAMILY.Poppins_Medium,
-//       color: '#F44336',
-//       marginLeft: 8,
-//     },
-//     versionText: {
-//       textAlign: 'center',
-//       fontSize: 12,
-//       fontFamily: FONTS_FAMILY.Poppins_Regular,
-//       color: isDarkMode ? '#666' : '#999',
-//       marginTop: 24,
-//       marginBottom: 12,
-//     },
-//   });
-
-//   return (
-//     <View style={styles.container}>
-//       <StatusBar
-//         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-//         backgroundColor={isDarkMode ? dark33 : white}
-//       />
-
-//       {/* Header */}
-//       <View style={styles.header}>
-//         <View style={styles.headerTop}>
-//           <Text style={styles.headerTitle}>Profile</Text>
-//           <TouchableOpacity
-//             style={styles.settingsButton}
-//             activeOpacity={0.7}
-//             onPress={() => navigation.navigate('Settings')}
-//           >
-//             <Ionicons
-//               name="settings-outline"
-//               size={24}
-//               color={isDarkMode ? white : '#000'}
-//             />
-//           </TouchableOpacity>
-//         </View>
-
-//         {/* Profile Card */}
-//         <View style={styles.profileCard}>
-//           <View style={styles.avatarContainer}>
-//             {userData.profileImage ? (
-//               <Image
-//                 source={{ uri: userData.profileImage }}
-//                 style={styles.avatarImage}
-//               />
-//             ) : (
-//               <Text style={styles.avatarText}>
-//                 {userData.name.split(' ').map(n => n[0]).join('')}
-//               </Text>
-//             )}
-//           </View>
-//           <View style={styles.profileInfo}>
-//             <Text style={styles.profileName}>{userData.name}</Text>
-//             <Text style={styles.profileEmail}>{userData.email}</Text>
-//             <Text style={styles.profilePhone}>{userData.phone}</Text>
-//           </View>
-//         </View>
-//       </View>
-
-//       {/* Stats */}
-//       {/* <View style={styles.statsContainer}>
-//         <View style={styles.statBox}>
-//           <Text style={styles.statValue}>{userData.totalBookings}</Text>
-//           <Text style={styles.statLabel}>Total Bookings</Text>
-//         </View>
-//         <View style={styles.statBox}>
-//           <Text style={styles.statValue}>4.8</Text>
-//           <Text style={styles.statLabel}>Rating</Text>
-//         </View>
-//         <View style={styles.statBox}>
-//           <Text style={styles.statValue}>{userData.memberSince}</Text>
-//           <Text style={styles.statLabel}>Member Since</Text>
-//         </View>
-//       </View> */}
-
-//       <View style={{ height: 20 }} />
-
-//       <ScrollView
-//         showsVerticalScrollIndicator={false}
-//         contentContainerStyle={styles.scrollContent}
-//       >
-//         {/* Account Section */}
-//         <MenuSection title="Account" items={accountMenuItems} />
-
-//         {/* Support Section */}
-//         <MenuSection title="Support" items={supportMenuItems} />
-
-//         {/* Legal Section */}
-//         <MenuSection title="Legal" items={legalMenuItems} />
-//         <View style={{
-//           gap:10
-//         }}>
-//         <TouchableOpacity
-//           style={styles.logoutButton}
-//           activeOpacity={0.7}
-//           onPress={handleLogout}
-//         >
-//           <MaterialCommunityIcons name="delete" size={22} color="#F44336" />
-//           <Text style={styles.logoutText}>Delete my Account</Text>
-//         </TouchableOpacity>
-
-//         {/* Logout Button */}
-//         <TouchableOpacity
-//           style={styles.logoutButton}
-//           activeOpacity={0.7}
-//           onPress={handleLogout}
-//         >
-//           <MaterialCommunityIcons name="logout" size={22} color="#F44336" />
-//           <Text style={styles.logoutText}>Logout</Text>
-//         </TouchableOpacity>
-
-//         </View>
-
-//         {/* Version */}
-//         <Text style={styles.versionText}>Version 2.5.0</Text>
-//       </ScrollView>
-//     </View>
-//   );
-// };
-
-// export default ProfileScreen;
-
-
-
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -511,534 +7,491 @@ import {
   StatusBar,
   ScrollView,
   Image,
-  Alert,
+  ImageBackground,
 } from 'react-native';
 import { FONTS_FAMILY } from '../../assets/Fonts';
 import {
   App_Primary_color,
   dark33,
-  dark55,
-  darkMode25,
   white
 } from '../../common/Colors/colors';
 import { useSelector } from 'react-redux';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Feather from 'react-native-vector-icons/Feather';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import LinearGradient from 'react-native-linear-gradient';
+import IMG from '../../assets/Images';
 
 const ProfileScreen = ({ navigation }) => {
   const { isDarkMode } = useSelector(state => state.theme);
-  const [expandedSections, setExpandedSections] = useState({});
 
-  // User data - Replace with API/Redux
-  const [userData] = useState({
-    name: 'Rahul Kumar',
-    email: 'rahul.kumar@example.com',
-    phone: '+91 98765 43210',
-    companyName: 'Kumar Logistics Pvt Ltd',
-    memberSince: 'Jan 23',
-    totalBookings: 145,
-    profileImage: null, // Add image URL if available
-  });
+  const policies = [
+    { id: 1, title: ' Policies', icon: 'shield-checkmark-outline', navigation:'PoliciesScreen' },
+    // { id: 2, title: 'Terms & Conditions', icon: 'document-text-outline' },
+    // { id: 3, title: 'Refund Policy', icon: 'cash-outline' },
+    // { id: 4, title: 'About Us', icon: 'information-circle-outline' },
+    // { id: 5, title: 'Contact Us', icon: 'call-outline' },
+    // { id: 6, title: 'Help & Support', icon: 'help-circle-outline' },
+  ];
 
-  const handleLogout = () => {
-    Alert.alert(
-      'Logout',
-      'Are you sure you want to logout?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Logout',
-          style: 'destructive',
-          onPress: () => {
-            // Add logout logic here
-            console.log('User logged out');
-          }
-        }
-      ]
-    );
-  };
-
-  const handleDeleteAccount = () => {
-    Alert.alert(
-      'Delete Account',
-      'Are you sure you want to delete your account? This action cannot be undone.',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: () => {
-            // Add delete account logic here
-            console.log('Account deleted');
-          }
-        }
-      ]
-    );
-  };
-
-  const toggleSection = (itemId) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [itemId]: !prev[itemId]
-    }));
-  };
-
-  const MenuSection = ({ title, items }) => (
-    <View style={styles.menuSection}>
-      <Text style={[styles.sectionTitle, { color: isDarkMode ? '#999' : '#666' }]}>
-        {title}
-      </Text>
-      <View style={[styles.menuContainer, { backgroundColor: isDarkMode ? dark33 : white }]}>
-        {items.map((item, index) => (
-          <React.Fragment key={item.id}>
-            <TouchableOpacity
-              style={styles.menuItem}
-              activeOpacity={0.7}
-              onPress={item.hasSubmenu ? () => toggleSection(item.id) : item.onPress}
-            >
-              <View style={styles.menuItemLeft}>
-                <View style={[styles.iconContainer, { backgroundColor: item.iconBg + '20' }]}>
-                  {item.icon}
-                </View>
-                <View style={styles.menuTextContainer}>
-                  <Text style={[styles.menuTitle, { color: isDarkMode ? white : '#000' }]}>
-                    {item.title}
-                  </Text>
-                  {item.subtitle && (
-                    <Text style={[styles.menuSubtitle, { color: isDarkMode ? '#999' : '#666' }]}>
-                      {item.subtitle}
-                    </Text>
-                  )}
-                </View>
-              </View>
-              {item.hasSubmenu ? (
-                <Feather
-                  name={expandedSections[item.id] ? "chevron-up" : "chevron-down"}
-                  size={20}
-                  color={isDarkMode ? '#666' : '#999'}
-                />
-              ) : (
-                <Feather
-                  name="chevron-right"
-                  size={20}
-                  color={isDarkMode ? '#666' : '#999'}
-                />
-              )}
-            </TouchableOpacity>
-            
-            {/* Submenu items */}
-            {item.hasSubmenu && expandedSections[item.id] && item.submenuItems && (
-              <View style={styles.submenuContainer}>
-                {item.submenuItems.map((subItem, subIndex) => (
-                  <React.Fragment key={subItem.id}>
-                    <TouchableOpacity
-                      style={styles.submenuItem}
-                      activeOpacity={0.7}
-                      onPress={subItem.onPress}
-                    >
-                      <View style={styles.menuItemLeft}>
-                        <View style={[styles.submenuIconContainer, { backgroundColor: subItem.iconBg + '20' }]}>
-                          {subItem.icon}
-                        </View>
-                        <View style={styles.menuTextContainer}>
-                          <Text style={[styles.submenuTitle, { color: subItem.isDanger ? '#F44336' : (isDarkMode ? white : '#000') }]}>
-                            {subItem.title}
-                          </Text>
-                          {subItem.subtitle && (
-                            <Text style={[styles.menuSubtitle, { color: isDarkMode ? '#999' : '#666' }]}>
-                              {subItem.subtitle}
-                            </Text>
-                          )}
-                        </View>
-                      </View>
-                      <Feather
-                        name="chevron-right"
-                        size={18}
-                        color={isDarkMode ? '#666' : '#999'}
-                      />
-                    </TouchableOpacity>
-                    {subIndex < item.submenuItems.length - 1 && (
-                      <View style={[styles.divider, { backgroundColor: isDarkMode ? dark55 : '#F0F0F0', marginLeft: 60 }]} />
-                    )}
-                  </React.Fragment>
-                ))}
-              </View>
-            )}
-
-            {index < items.length - 1 && (
-              <View style={[styles.divider, { backgroundColor: isDarkMode ? dark55 : '#F0F0F0' }]} />
-            )}
-          </React.Fragment>
-        ))}
+  const PolicyCard = ({ item }) => (
+    <TouchableOpacity
+      style={styles.policyCard}
+      activeOpacity={0.7}
+      onPress={() => navigation.navigate(item.navigation, { policy: item.title })}
+    >
+      <View style={styles.policyLeft}>
+        <View style={styles.policyIconContainer}>
+          <Ionicons name={item.icon} size={22} color="#6B4CE6" />
+        </View>
+        <Text style={styles.policyTitle}>{item.title}</Text>
       </View>
-    </View>
+      <Ionicons name="chevron-forward" size={20} color="#999" />
+    </TouchableOpacity>
   );
-
-  const accountMenuItems = [
-    {
-      id: '2',
-      title: 'Company Information',
-      subtitle: userData.companyName,
-      icon: <MaterialCommunityIcons name="office-building" size={22} color="#2196F3" />,
-      iconBg: '#2196F3',
-      onPress: () => navigation.navigate('CompanyInfo'),
-    },
-    {
-      id: '4',
-      title: 'Account Details',
-      subtitle: 'Balance Rs. 0',
-      icon: <AntDesign name="account-book" size={22} color="#FF9800" />,
-      iconBg: '#FF9800',
-      onPress: () => navigation.navigate('AccountDetailsScreen'),
-    },
-    {
-      id: '3',
-      title: 'Search GST',
-      subtitle: 'Search your GST details',
-      icon: <Ionicons name="search" size={22} color="#FF9800" />,
-      iconBg: '#FF9800',
-      onPress: () => navigation.navigate('WebViewScreen'),
-    },
-    {
-      id: '5',
-      title: 'Account Settings',
-      subtitle: 'Manage your account preferences',
-      icon: <Ionicons name="settings-outline" size={22} color="#9C27B0" />,
-      iconBg: '#9C27B0',
-      hasSubmenu: true,
-      submenuItems: [
-        {
-          id: '5-1',
-          title: 'Delete my Account',
-          subtitle: 'Permanently delete your account',
-          icon: <MaterialCommunityIcons name="delete" size={20} color="#F44336" />,
-          iconBg: '#F44336',
-          isDanger: true,
-          onPress: handleDeleteAccount,
-        },
-      ],
-    },
-  ];
-
-  const supportMenuItems = [
-    {
-      id: '1',
-      title: 'FAQs',
-      subtitle: 'Find answers to common questions',
-      icon: <AntDesign name="questioncircleo" size={20} color="#9C27B0" />,
-      iconBg: '#9C27B0',
-      onPress: () => navigation.navigate('FAQsScreen'),
-    },
-    {
-      id: '2',
-      title: 'Call Support',
-      subtitle: '24/7 customer support available',
-      icon: <Feather name="phone-call" size={20} color="#00BCD4" />,
-      iconBg: '#00BCD4',
-      onPress: () => {
-        navigation.navigate('CallSupportScreen')
-      },
-    },
-    {
-      id: '3',
-      title: 'Submit Complaint',
-      subtitle: 'Report an issue or complaint',
-      icon: <MaterialCommunityIcons name="message-alert" size={22} color="#F44336" />,
-      iconBg: '#F44336',
-      onPress: () => navigation.navigate('SubmitComplaintScreen'),
-    },
-  ];
-
-  const legalMenuItems = [
-    {
-      id: '1',
-      title: 'Terms & Conditions',
-      subtitle: 'Read our terms of service',
-      icon: <Ionicons name="document-text-outline" size={22} color="#607D8B" />,
-      iconBg: '#607D8B',
-      onPress: () => navigation.navigate('TermsAndConditionsScreen'),
-    },
-    {
-      id: '2',
-      title: 'Privacy Policy',
-      subtitle: 'How we handle your data',
-      icon: <MaterialCommunityIcons name="shield-check" size={22} color="#795548" />,
-      iconBg: '#795548',
-      onPress: () => navigation.navigate('PrivacyPolicyScreen'),
-    },
-  ];
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
+      backgroundColor: '#e2dfee',
     },
-    header: {
-      backgroundColor: isDarkMode ? dark33 : white,
-      paddingTop: 30,
-      paddingBottom: 10,
+    headerGradient: {
+      paddingTop: 35,
+      paddingBottom: 50,
       paddingHorizontal: 20,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 8,
-      elevation: 5,
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
     },
-    headerTop: {
+    headerContent: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginBottom: 10,
+    },
+    backButton: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: 'rgba(255,255,255,0.2)',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     headerTitle: {
       fontSize: 20,
       fontFamily: FONTS_FAMILY.Poppins_Bold,
-      color: isDarkMode ? white : '#000',
+      color: white,
+      flex: 1,
+      textAlign: 'center',
+      marginHorizontal: 10,
     },
-    settingsButton: {
-      width: 30,
-      height: 30,
+    editButton: {
+      width: 40,
+      height: 40,
       borderRadius: 20,
-      backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
+      backgroundColor: 'rgba(255,255,255,0.2)',
       justifyContent: 'center',
       alignItems: 'center',
     },
-    profileCard: {
-      flexDirection: 'row',
+    profileSection: {
       alignItems: 'center',
-      backgroundColor: isDarkMode ? darkMode25 : '#F5F6F8',
-      padding: 10,
-      borderRadius: 16,
+      marginTop: -100,
+      paddingHorizontal: 20,
+      zIndex:100000
     },
-    avatarContainer: {
-      width: 60,
-      height: 60,
-      borderRadius: 35,
+    profileImageContainer: {
+      width: 100,
+      height: 100,
+      borderRadius: 50,
+      backgroundColor: white,
+      justifyContent: 'center',
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 5,
+      marginBottom: 15,
+      position: 'relative',
+      marginTop: 100
+    },
+    profileImage: {
+      width: 90,
+      height: 90,
+      borderRadius: 45,
+      backgroundColor: '#E0E0E0',
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center'
+
+    },
+    cameraButton: {
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+      width: 32,
+      height: 32,
+      borderRadius: 16,
       backgroundColor: App_Primary_color,
       justifyContent: 'center',
       alignItems: 'center',
-      marginRight: 16,
-      shadowColor: App_Primary_color,
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.3,
+      borderWidth: 3,
+      borderColor: white,
+    },
+    personalDetailsCard: {
+      backgroundColor: white,
+      borderRadius: 9,
+      padding: 16,
+      marginTop: 10,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.05,
       shadowRadius: 8,
-      elevation: 5,
+      elevation: 3,
+      marginHorizontal: 10,
     },
-    avatarImage: {
-      width: 60,
-      height: 60,
-      borderRadius: 35,
+    cardHeader: {
+      flexDirection: 'row',
+      // justifyContent: 'space-between',
+      alignItems: 'center',
+      // marginBottom: 12,
+      gap: 8
     },
-    avatarText: {
-      fontSize: 20,
-      fontFamily: FONTS_FAMILY.Poppins_Bold,
-      color: white,
-    },
-    profileInfo: {
-      flex: 1,
-    },
-    profileName: {
+    cardTitle: {
       fontSize: 14,
       fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-      color: isDarkMode ? white : '#000',
+      color: '#1A1A1A',
     },
-    profileEmail: {
-      fontSize: 12,
-      fontFamily: FONTS_FAMILY.Poppins_Regular,
-      color: isDarkMode ? '#999' : '#666',
-      marginBottom: 2,
+    editIconButton: {
+      width: 30,
+      height: 30,
+      borderRadius: 15,
+      backgroundColor: '#F5F3FF',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
-    profilePhone: {
-      fontSize: 12,
-      fontFamily: FONTS_FAMILY.Poppins_Regular,
-      color: isDarkMode ? '#999' : '#666',
-    },
-    scrollContent: {
-      paddingBottom: 100,
-    },
-    menuSection: {
-      marginBottom: 15,
-      paddingHorizontal: 20,
-    },
-    sectionTitle: {
-      fontSize: 13,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-      textTransform: 'uppercase',
-      letterSpacing: 0.5,
+    detailRow: {
       marginBottom: 8,
     },
-    menuContainer: {
-      borderRadius: 10,
-      overflow: 'hidden',
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.05,
-      shadowRadius: 8,
-      elevation: 3,
-    },
-    menuItem: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: 10,
-    },
-    menuItemLeft: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      flex: 1,
-    },
-    iconContainer: {
-      width: 33,
-      height: 33,
-      borderRadius: 22,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 12,
-    },
-    menuTextContainer: {
-      flex: 1,
-    },
-    menuTitle: {
-      fontSize: 13,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
-    },
-    menuSubtitle: {
+    detailLabel: {
       fontSize: 11,
       fontFamily: FONTS_FAMILY.Poppins_Regular,
+      color: '#999',
+      marginBottom: 2,
     },
-    submenuContainer: {
-      backgroundColor: isDarkMode ? '#1a1a1a' : '#F9F9F9',
-      paddingVertical: 5,
-    },
-    submenuItem: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      paddingVertical: 12,
-      paddingHorizontal: 16,
-      paddingLeft: 20,
-    },
-    submenuIconContainer: {
-      width: 28,
-      height: 28,
-      borderRadius: 18,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 12,
-    },
-    submenuTitle: {
-      fontSize: 12,
+    detailValue: {
+      fontSize: 13,
       fontFamily: FONTS_FAMILY.Poppins_Medium,
+      color: '#1A1A1A',
     },
-    divider: {
-      height: 1,
+    qrCodeContainer: {
+      alignItems: 'center',
+      // marginTop: 10,
     },
-    logoutButton: {
+    qrCode: {
+      width: 80,
+      height: 80,
+      backgroundColor: '#E0E0E0',
+      borderRadius: 8,
+      alignItems: 'center',
+    },
+    paymentMethodsCard: {
+      backgroundColor: white,
+      borderRadius: 9,
+      padding: 16,
+      marginTop: 15,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.05,
+      shadowRadius: 8,
+      elevation: 3,
       marginHorizontal: 10,
-      backgroundColor: isDarkMode ? dark33 : white,
-      borderRadius: 10,
-      padding: 8,
+    },
+    paymentRow: {
+      flexDirection: 'row',
+      gap: 12,
+      marginTop: 12,
+    },
+    paymentCard: {
+      flex: 1,
+      backgroundColor: '#F5F3FF',
+      borderRadius: 12,
+      padding: 12,
+      alignItems: 'center',
+    },
+    paymentType: {
+      fontSize: 11,
+      fontFamily: FONTS_FAMILY.Poppins_Medium,
+      color: '#1A1A1A',
+      marginBottom: 4,
+    },
+    cardNumber: {
+      fontSize: 10,
+      fontFamily: FONTS_FAMILY.Poppins_Regular,
+      color: '#999',
+      marginBottom: 8,
+    },
+    upiId: {
+      fontSize: 10,
+      fontFamily: FONTS_FAMILY.Poppins_Regular,
+      color: App_Primary_color,
+    },
+    addButton: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
+      gap: 6,
+      backgroundColor: white,
+      borderWidth: 1.5,
+      borderColor: App_Primary_color,
+      borderRadius: 20,
+      paddingVertical: 6,
+      paddingHorizontal: 16,
+    },
+    addButtonText: {
+      fontSize: 11,
+      fontFamily: FONTS_FAMILY.Poppins_Medium,
+      color: App_Primary_color,
+    },
+    paymentSettingsCard: {
+      backgroundColor: white,
+      borderRadius: 9,
+      padding: 16,
+      marginTop: 15,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.05,
+      shadowRadius: 8,
+      elevation: 3,
+      marginHorizontal: 10,
+    },
+    settingsRow: {
+      flexDirection: 'row',
+      gap: 12,
+      marginTop: 12,
+    },
+    settingCard: {
+      flex: 1,
+      borderWidth: 1.5,
+      borderColor: '#E0E0E0',
+      borderRadius: 12,
+      padding: 16,
+      alignItems: 'center',
+      borderStyle: 'dashed',
+    },
+    settingIcon: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: '#F5F3FF',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 8,
+    },
+    settingTitle: {
+      fontSize: 11,
+      fontFamily: FONTS_FAMILY.Poppins_Medium,
+      color: '#1A1A1A',
+      textAlign: 'center',
+    },
+    policiesSection: {
+      marginTop: 15,
+      marginHorizontal: 20,
+      marginBottom: 30,
+    },
+    policiesTitle: {
+      fontSize: 16,
+      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+      color: '#1A1A1A',
+      marginBottom: 12,
+    },
+    policyCard: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      backgroundColor: white,
+      padding: 14,
+      borderRadius: 9,
+      marginBottom: 10,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.05,
       shadowRadius: 8,
       elevation: 3,
     },
-    logoutText: {
-      fontSize: 14,
-      fontFamily: FONTS_FAMILY.Poppins_Medium,
-      color: '#F44336',
-      marginLeft: 8,
+    policyLeft: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
     },
-    versionText: {
-      textAlign: 'center',
-      fontSize: 12,
-      fontFamily: FONTS_FAMILY.Poppins_Regular,
-      color: isDarkMode ? '#666' : '#999',
-      marginTop: 24,
-      marginBottom: 12,
+    policyIconContainer: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: '#F5F3FF',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    policyTitle: {
+      fontSize: 13,
+      fontFamily: FONTS_FAMILY.Poppins_Medium,
+      color: '#1A1A1A',
     },
   });
 
   return (
     <View style={styles.container}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={isDarkMode ? dark33 : white}
-      />
+      <StatusBar barStyle="light-content" backgroundColor="#6B4CE6" />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerTop}>
-          <Text style={styles.headerTitle}>Profile</Text>
+      {/* Header with Gradient */}
+      {/* <LinearGradient
+        colors={[App_Primary_color, App_Primary_color, '#E5D1FB']}
+        start={{ x: 1, y: 1 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.headerGradient}
+      > */}
+        {/* <View style={styles.headerContent}>
           <TouchableOpacity
-            style={styles.settingsButton}
+            style={styles.backButton}
             activeOpacity={0.7}
-            onPress={() => navigation.navigate('Settings')}
+            onPress={() => navigation.goBack()}
           >
-            <Ionicons
-              name="settings-outline"
-              size={24}
-              color={isDarkMode ? white : '#000'}
-            />
+            <Ionicons name="chevron-back" size={24} color={white} />
           </TouchableOpacity>
+
+          <Text style={styles.headerTitle}>Profile</Text>
+
+          <TouchableOpacity
+            style={styles.editButton}
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('EditProfileScreen')}
+          >
+            <Ionicons name="create-outline" size={22} color={white} />
+          </TouchableOpacity>
+        </View> */}
+      {/* </LinearGradient> */}
+
+      <ImageBackground
+      source={IMG.HeaderBg}
+      style={{height:100,paddingTop:35,paddingHorizontal:20, }}
+      ></ImageBackground>
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Profile Image Section */}
+        <View style={styles.profileSection}>
+          <View style={styles.profileImageContainer}>
+            <View style={styles.profileImage}>
+              <Ionicons name="person" size={50} color="#999" />
+            </View>
+            <TouchableOpacity style={styles.cameraButton} activeOpacity={0.7}>
+              <Ionicons name="camera" size={16} color={white} />
+            </TouchableOpacity>
+          </View>
+
+
         </View>
 
-        {/* Profile Card */}
-        <View style={styles.profileCard}>
-          <View style={styles.avatarContainer}>
-            {userData.profileImage ? (
-              <Image
-                source={{ uri: userData.profileImage }}
-                style={styles.avatarImage}
-              />
-            ) : (
-              <Text style={styles.avatarText}>
-                {userData.name.split(' ').map(n => n[0]).join('')}
-              </Text>
-            )}
+        {/* Personal Details Card */}
+        <View style={styles.personalDetailsCard}>
+          <View style={{
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+          }}>
+            <View>
+              <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Personal Details</Text>
+                <TouchableOpacity style={styles.editIconButton} activeOpacity={0.7}
+                onPress={()=>navigation.navigate('EditProfileScreen')}
+                >
+                  <Ionicons name="create-outline" size={16} color="#6B4CE6" />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.detailRow}>
+                <Text style={styles.detailValue}>Wade Warren</Text>
+                <Text style={styles.detailLabel}>(704) 555-0127</Text>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.qrCodeContainer}
+            onPress={()=>navigation.navigate('MyQRScreen')}
+            >
+              <View style={styles.qrCode}>
+                {/* QR Code Image */}
+                <Image source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm-XfloVOFHoB2WGQ5PlckGPhjjsqcCO1I-A&s'}}
+                style={{width:'100%',height:'100%'}}
+                />
+                <Text style={{...styles.detailValue, bottom:10}}>My QR</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-          <View style={styles.profileInfo}>
-            <Text style={styles.profileName}>{userData.name}</Text>
-            <Text style={styles.profileEmail}>{userData.email}</Text>
-            <Text style={styles.profilePhone}>{userData.phone}</Text>
+
+
+
+
+        </View>
+
+        {/* Payment Methods Card */}
+        <View style={styles.paymentMethodsCard}>
+          <Text style={styles.cardTitle}>Payment Methods</Text>
+
+          <View style={styles.paymentRow}>
+            {/* Debit Card */}
+            <View style={styles.paymentCard}>
+              <Text style={styles.paymentType}>Debit Card</Text>
+              <Text style={styles.cardNumber}>**** **** **** 1234</Text>
+              <View style={styles.addButton}>
+                <Ionicons name="add" size={16} color="#6B4CE6" />
+                <Text style={styles.addButtonText}>ADD</Text>
+              </View>
+            </View>
+
+            {/* UPI */}
+            <View style={styles.paymentCard}>
+              <Text style={styles.paymentType}>UPI</Text>
+              <Text style={styles.upiId}>xyz@paytm@paytm</Text>
+              <View style={styles.addButton}>
+                <Ionicons name="add" size={16} color="#6B4CE6" />
+                <Text style={styles.addButtonText}>ADD</Text>
+              </View>
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={{ height: 20 }} />
+        {/* Payment Settings Card */}
+        <View style={styles.paymentSettingsCard}>
+          <Text style={styles.cardTitle}>Payment Settings</Text>
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
-      >
-        {/* Account Section */}
-        <MenuSection title="Account" items={accountMenuItems} />
+          <View style={styles.settingsRow}>
+            {/* My Wallet */}
+            <TouchableOpacity
+              style={styles.settingCard}
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('MyWalletScreen')}
+            >
+              <View style={styles.settingIcon}>
+                <Ionicons name="wallet-outline" size={24} color="#6B4CE6" />
+              </View>
+              <Text style={styles.settingTitle}>My Wallet</Text>
+            </TouchableOpacity>
 
-        {/* Support Section */}
-        <MenuSection title="Support" items={supportMenuItems} />
+            {/* Manage Bank Account */}
+            <TouchableOpacity
+              style={styles.settingCard}
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('ManageBankScreen')}
+            >
+              <View style={styles.settingIcon}>
+                <Ionicons name="person-outline" size={24} color="#6B4CE6" />
+              </View>
+              <Text style={styles.settingTitle}>Manage Bank Account</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
 
-        {/* Legal Section */}
-        <MenuSection title="Legal" items={legalMenuItems} />
-
-        {/* Logout Button */}
-        <TouchableOpacity
-          style={styles.logoutButton}
-          activeOpacity={0.7}
-          onPress={handleLogout}
-        >
-          <MaterialCommunityIcons name="logout" size={22} color="#F44336" />
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
-
-        {/* Version */}
-        <Text style={styles.versionText}>Version 2.5.0</Text>
+        {/* Policies Section */}
+        <View style={styles.policiesSection}>
+          <Text style={styles.policiesTitle}>More Information</Text>
+          {policies.map((policy) => (
+            <PolicyCard key={policy.id} item={policy} />
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
