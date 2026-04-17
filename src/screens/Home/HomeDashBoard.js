@@ -201,21 +201,22 @@ const PaymentHomeScreen = ({ navigation }) => {
     },
     sectionTitle: {
       fontSize: 16,
-      fontFamily: FONTS_FAMILY.Poppins_SemiBold,
+      fontFamily: FONTS_FAMILY.Poppins_Medium,
       color: '#1A1A1A',
       marginBottom: 10,
     },
     servicesGrid: {
       flexDirection: 'row',
       justifyContent: 'space-between',
+      marginTop:15
     },
     serviceCard: {
       alignItems: 'center',
       gap: 8,
     },
     serviceIconContainer: {
-      width: 60,
-      height: 60,
+      width: 50,
+      height: 50,
       borderRadius: 8,
       backgroundColor: App_Primary_color,
       justifyContent: 'center',

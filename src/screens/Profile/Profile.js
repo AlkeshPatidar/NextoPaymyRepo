@@ -31,7 +31,7 @@ const ProfileScreen = ({ navigation }) => {
     // { id: 3, title: 'Refund Policy', icon: 'cash-outline' },
     // { id: 4, title: 'About Us', icon: 'information-circle-outline' },
     // { id: 5, title: 'Contact Us', icon: 'call-outline' },
-    // { id: 6, title: 'Help & Support', icon: 'help-circle-outline' },
+    { id: 6, title: 'Help & Support', icon: 'help-circle-outline', navigation:'HelpScreen' },
   ];
 
   const PolicyCard = ({ item }) => (
@@ -492,6 +492,7 @@ const ProfileScreen = ({ navigation }) => {
             <PolicyCard key={policy.id} item={policy} />
           ))}
         </View>
+      <View style={{height:100}}/>
       </ScrollView>
     </View>
   );

@@ -85,6 +85,7 @@ import BrandsVouchersScreen from '../../screens/Home/SeeAll/BrandVoucher/BrandVo
 
 import BillNotificationsScreen from '../../screens/Notification/Notification';
 import IntroducingMultiSteps from '../../screens/IntroDucing/IntroducingMultiSteps'
+import HelpScreen from '../../screens/HelpCenter/Help'
 
 
 
@@ -154,6 +155,9 @@ const StackNavigation = () => {
 
         <Stack.Screen name={'BillNotificationsScreen'} component={BillNotificationsScreen} />
         <Stack.Screen name={'IntroducingMultiSteps'} component={IntroducingMultiSteps} />
+
+        <Stack.Screen name={'HelpScreen'} component={HelpScreen} />
+
 
 
         

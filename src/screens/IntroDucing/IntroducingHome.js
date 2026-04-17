@@ -215,6 +215,7 @@ const IntroducingHome = ({ navigation }) => {
                                     borderRadius: 8
                                 }}
                                 title={'Nextopay'}
+                                onPress={()=>navigation.navigate('IntroducingMultiSteps')}
                             />
                         </Row>
                         <CustomText style={{

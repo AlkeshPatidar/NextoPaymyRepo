@@ -149,7 +149,7 @@ const OffersScreen = ({ navigation }) => {
             marginHorizontal: 10,
             //   marginTop: -10,
             marginBottom: 15,
-            borderRadius: 16,
+            borderRadius: 10,
             padding: 7,
             flexDirection: 'row',
             gap: 12,
@@ -165,14 +165,15 @@ const OffersScreen = ({ navigation }) => {
             alignItems: 'center',
             justifyContent: 'center',
             gap: 8,
-            backgroundColor: '#F5F3FF',
-            paddingVertical: 10,
+            backgroundColor: 'white',
+            paddingVertical: 5,
             paddingHorizontal: 10,
-            borderRadius: 12,
+            borderRadius: 10,
+            elevation:2
         },
         filterButtonText: {
             fontSize: 14,
-            fontFamily: FONTS_FAMILY.Poppins_Medium,
+            fontFamily: FONTS_FAMILY.Poppins_Regular,
             color: '#85949F',
         },
         offersGrid: {
@@ -199,7 +200,7 @@ const OffersScreen = ({ navigation }) => {
         voucherContainer: {
             width: '100%',
             aspectRatio: 1.4,
-            padding: 8,
+            padding: 5,
         },
         voucherImage: {
             flex: 1,
@@ -234,7 +235,7 @@ const OffersScreen = ({ navigation }) => {
             marginTop: 2,
         },
         voucherTitle: {
-            fontSize: 16,
+            fontSize: 14,
             fontFamily: FONTS_FAMILY.Poppins_Bold,
             marginTop: 8,
         },
@@ -296,10 +297,10 @@ const OffersScreen = ({ navigation }) => {
             paddingTop: 8,
         },
         offerTitle: {
-            fontSize: 16,
+            fontSize: 14,
             fontFamily: FONTS_FAMILY.Poppins_Medium,
             color: '#1A1A1A',
-            marginBottom: 4,
+            // marginBottom: 4,
         },
         offerCashback: {
             fontSize: 12,
